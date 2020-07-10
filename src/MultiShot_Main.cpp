@@ -18,6 +18,7 @@ int main()
     //*各种参数*//
     PARAMETER param;
     parameter_func(&param);
+    obs_func(&param);
     //**正演**//
     forward_func(&param);
 

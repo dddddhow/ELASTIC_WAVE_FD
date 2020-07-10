@@ -11,7 +11,7 @@ Date=$(shell date +%F_time%H)
 Projn   =ELASTIC_WAVE_FD
 #--------------------------------------#
 CPP_CMPL_0=icpc
-CPP_CMPL=$(CPP_CMPL_0) -O3
+CPP_CMPL=$(CPP_CMPL_0) -O3 -std=c++11
 #CPP_CMPL=icc -std=c++11 -O2
 C_CMPL  =icc -O3
 F_CMPL  =gfortran	-O3 -cpp
@@ -22,7 +22,7 @@ C_CMPL_FLAG   = -Wno-unused-result
 CPP_CMPL_FLAG = -fmax-errors=5
 F_CMPL_FLAG   =
 LINKER_FLAG   =
-LINKLIBS	  = -lm
+LINKLIBS	  = -lm -larmadillo
 
 CSrc   =$(wildcard *.c)
 CppSrc =$(wildcard *.cpp)

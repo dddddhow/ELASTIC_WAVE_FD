@@ -71,5 +71,6 @@ struct PARAMETER{
     float ttxx;
     float ttzz;
     float ttxz;
-
+    //**日志flag
+    int log_flag;
 };

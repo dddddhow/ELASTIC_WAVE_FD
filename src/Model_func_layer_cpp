@@ -6,7 +6,7 @@ double model_func(struct PARAMETER *param,float **V, float **V_p, float **V_s,
 {
 
     /********************模型赋值********************/
-/*
+
     param->acoustic_flag=1;
     for(int i=0;i<param->Nx;i++)
     {
@@ -63,9 +63,9 @@ double model_func(struct PARAMETER *param,float **V, float **V_p, float **V_s,
         }
 
     }
-*/
-    /********************模型加载********************/
 
+    /********************模型加载********************/
+/*
     FILE *fpvp;
 	int Nx_temp,Nz_temp;
 
@@ -76,8 +76,8 @@ double model_func(struct PARAMETER *param,float **V, float **V_p, float **V_s,
 	for(int i = 0; i < Nx_temp; i++)
 	V_p_temp[i] = new float[Nz_temp];
 
-    //fpvp=fopen("../model/model_nz600_nx400.dat","rb");
-    fpvp=fopen("../model/model_max1500_nz600_nx400.dat","rb");
+    fpvp=fopen("../model/model_nz600_nx400.dat","rb");
+    //fpvp=fopen("../model/model_max1500_nz600_nx400.dat","rb");
     for(int i=0; i<Nx_temp; i++)
     {
         fread(V_p_temp[i],sizeof(float),Nz_temp,fpvp);
@@ -146,7 +146,7 @@ double model_func(struct PARAMETER *param,float **V, float **V_p, float **V_s,
         }
     }
 
-
+*/
     /********************稳定性判断********************/
     stability_func(param, V_p, V_s);
 
