@@ -55,8 +55,12 @@ double pml_func(struct PARAMETER *param, float **absorbx, float **absorbz)
     /********************PML保存********************/
     if (param->pml_save_flag == 1)
     {
+        std::string fn_xpml_out = param->fn_data_out + "xPML.dat";
+        const char* fn_xpml_out_char = fn_xpml_out.data();
+        std::string fn_zpml_out = param->fn_data_out + "zPML.dat";
+        const char* fn_zpml_out_char = fn_zpml_out.data();
         FILE *fpx;
-        if((fpx = fopen ("../file/xPML", "w"))!=NULL)
+        if((fpx = fopen (fn_xpml_out_char, "w"))!=NULL)
         {
 
             for (i=0;i<param->Nx;i++)
@@ -71,7 +75,7 @@ double pml_func(struct PARAMETER *param, float **absorbx, float **absorbz)
         }
 
         FILE *fpz;
-        if((fpz = fopen ("../file/zPML", "w"))!=NULL)
+        if((fpz = fopen (fn_zpml_out_char, "w"))!=NULL)
         {
 
             for (i=0;i<param->Nx;i++)

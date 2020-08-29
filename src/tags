@@ -1,0 +1,137 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+BACK	Makefile	/^BACK   =$(BackDir)\/$(Projn)_back_$(Date).tgz$/;"	kind:macro	language:Make
+BackDir	Makefile	/^BackDir=~\/$/;"	kind:macro	language:Make
+Back_Content	Makefile	/^Back_Content=$(shell basename $(shell pwd))$/;"	kind:macro	language:Make
+BinDir	Makefile	/^BinDir =..\/bin$/;"	kind:macro	language:Make
+CObj	Makefile	/^CObj   =$(addprefix $(ObjDir)\/,$(CObj0))$/;"	kind:macro	language:Make
+CObj0	Makefile	/^CObj0  =$(patsubst %.c,%.o,${CSrc})$/;"	kind:macro	language:Make
+CPP_CMPL	Makefile	/^CPP_CMPL=$(CPP_CMPL_0) -O3 -std=c++11$/;"	kind:macro	language:Make
+CPP_CMPL_0	Makefile	/^CPP_CMPL_0=icpc$/;"	kind:macro	language:Make
+CPP_CMPL_FLAG	Makefile	/^CPP_CMPL_FLAG = -fmax-errors=5 -DARMA_ALLOW_FAKE_GCC$/;"	kind:macro	language:Make
+CSrc	Makefile	/^CSrc   =$(wildcard *.c)$/;"	kind:macro	language:Make
+C_CMPL	Makefile	/^C_CMPL  =icc -O3$/;"	kind:macro	language:Make
+C_CMPL_FLAG	Makefile	/^C_CMPL_FLAG   = -Wno-unused-result$/;"	kind:macro	language:Make
+CppObj	Makefile	/^CppObj =$(addprefix $(ObjDir)\/,$(CppObj0))$/;"	kind:macro	language:Make
+CppObj0	Makefile	/^CppObj0=$(patsubst %.cpp,%.o,${CppSrc})$/;"	kind:macro	language:Make
+CppSrc	Makefile	/^CppSrc =$(wildcard *.cpp)$/;"	kind:macro	language:Make
+Date	Makefile	/^Date=$(shell date +%F_time%H)$/;"	kind:macro	language:Make
+EXE	Makefile	/^EXE    =$(BinDir)\/$(Projn).e$/;"	kind:macro	language:Make
+F77Obj	Makefile	/^F77Obj =$(addprefix $(ObjDir)\/,$(F77Obj0))$/;"	kind:macro	language:Make
+F77Obj0	Makefile	/^F77Obj0=$(patsubst %.f,%.o,${F77Src})$/;"	kind:macro	language:Make
+F77Src	Makefile	/^F77Src =$(wildcard *.f)$/;"	kind:macro	language:Make
+F90Obj	Makefile	/^F90Obj =$(addprefix $(ObjDir)\/,$(F90Obj0))$/;"	kind:macro	language:Make
+F90Obj0	Makefile	/^F90Obj0=$(patsubst %.f90,%.o,${F90Src})$/;"	kind:macro	language:Make
+F90Src	Makefile	/^F90Src =$(wildcard *.f90)$/;"	kind:macro	language:Make
+F_CMPL	Makefile	/^F_CMPL  =gfortran	-O3 -cpp$/;"	kind:macro	language:Make
+F_CMPL_FLAG	Makefile	/^F_CMPL_FLAG   =$/;"	kind:macro	language:Make
+IncDir	Makefile	/^IncDir =..\/lib$/;"	kind:macro	language:Make
+LINKER	Makefile	/^LINKER  =$(CPP_CMPL)$/;"	kind:macro	language:Make
+LINKER_FLAG	Makefile	/^LINKER_FLAG   =$/;"	kind:macro	language:Make
+LINKLIBS	Makefile	/^LINKLIBS	  = -lm -larmadillo$/;"	kind:macro	language:Make
+LibDir	Makefile	/^LibDir =..\/lib$/;"	kind:macro	language:Make
+OBJ	Makefile	/^OBJ    =$(CObj) $(CppObj) $(F90Obj) $(F77Obj)$/;"	kind:macro	language:Make
+ObjDir	Makefile	/^ObjDir =..\/obj$/;"	kind:macro	language:Make
+PS_IO_func	Sub_DataIO.cpp	/^double PS_IO_func(struct PARAMETER *param, float **Vx,  float **Vz, int num_shot,int num_r)$/;"	kind:function	language:C++	signature:(struct PARAMETER *param, float **Vx, float **Vz, int num_shot,int num_r)
+Projn	Makefile	/^Projn   =ELASTIC_WAVE_FD$/;"	kind:macro	language:Make
+alloc1	Sub_alloc.cpp	/^void *alloc1 (size_t n1, size_t size)$/;"	kind:function	language:C++	signature:(size_t n1, size_t size)
+alloc1double	Sub_alloc.cpp	/^double *alloc1double(size_t n1)$/;"	kind:function	language:C++	signature:(size_t n1)
+alloc1float	Sub_alloc.cpp	/^float *alloc1float(size_t n1)$/;"	kind:function	language:C++	signature:(size_t n1)
+alloc1int	Sub_alloc.cpp	/^int *alloc1int(size_t n1)$/;"	kind:function	language:C++	signature:(size_t n1)
+alloc2	Sub_alloc.cpp	/^void **alloc2 (size_t n1, size_t n2, size_t size)$/;"	kind:function	language:C++	signature:(size_t n1, size_t n2, size_t size)
+alloc2double	Sub_alloc.cpp	/^double **alloc2double(size_t n1, size_t n2)$/;"	kind:function	language:C++	signature:(size_t n1, size_t n2)
+alloc2float	Sub_alloc.cpp	/^float **alloc2float(size_t n1, size_t n2)$/;"	kind:function	language:C++	signature:(size_t n1, size_t n2)
+alloc2int	Sub_alloc.cpp	/^int **alloc2int(size_t n1, size_t n2)$/;"	kind:function	language:C++	signature:(size_t n1, size_t n2)
+alloc2ushort	Sub_alloc.cpp	/^unsigned short **alloc2ushort(size_t n1, size_t n2)$/;"	kind:function	language:C++	signature:(size_t n1, size_t n2)
+alloc3	Sub_alloc.cpp	/^void ***alloc3 (size_t n1, size_t n2, size_t n3, size_t size)$/;"	kind:function	language:C++	signature:(size_t n1, size_t n2, size_t n3, size_t size)
+alloc3double	Sub_alloc.cpp	/^double ***alloc3double(size_t n1, size_t n2, size_t n3)$/;"	kind:function	language:C++	signature:(size_t n1, size_t n2, size_t n3)
+alloc3float	Sub_alloc.cpp	/^float ***alloc3float(size_t n1, size_t n2, size_t n3)$/;"	kind:function	language:C++	signature:(size_t n1, size_t n2, size_t n3)
+alloc3int	Sub_alloc.cpp	/^int ***alloc3int(size_t n1, size_t n2, size_t n3)$/;"	kind:function	language:C++	signature:(size_t n1, size_t n2, size_t n3)
+alloc3ushort	Sub_alloc.cpp	/^unsigned short ***alloc3ushort(size_t n1, size_t n2, size_t n3)$/;"	kind:function	language:C++	signature:(size_t n1, size_t n2, size_t n3)
+alloc4	Sub_alloc.cpp	/^void ****alloc4 (size_t n1, size_t n2, size_t n3, size_t n4, size_t size)$/;"	kind:function	language:C++	signature:(size_t n1, size_t n2, size_t n3, size_t n4, size_t size)
+alloc4float	Sub_alloc.cpp	/^float ****alloc4float(size_t n1, size_t n2, size_t n3, size_t n4)$/;"	kind:function	language:C++	signature:(size_t n1, size_t n2, size_t n3, size_t n4)
+alloc4int	Sub_alloc.cpp	/^int ****alloc4int(size_t n1, size_t n2, size_t n3, size_t n4)$/;"	kind:function	language:C++	signature:(size_t n1, size_t n2, size_t n3, size_t n4)
+alloc5	Sub_alloc.cpp	/^void *****alloc5 (size_t n1, size_t n2, size_t n3, size_t n4, size_t n5, size_t size)$/;"	kind:function	language:C++	signature:(size_t n1, size_t n2, size_t n3, size_t n4, size_t n5, size_t size)
+alloc5float	Sub_alloc.cpp	/^float *****alloc5float(size_t n1, size_t n2, size_t n3, size_t n4, size_t n5)$/;"	kind:function	language:C++	signature:(size_t n1, size_t n2, size_t n3, size_t n4, size_t n5)
+alloc5int	Sub_alloc.cpp	/^int *****alloc5int(size_t n1, size_t n2, size_t n3, size_t n4, size_t n5)$/;"	kind:function	language:C++	signature:(size_t n1, size_t n2, size_t n3, size_t n4, size_t n5)
+alloc5uchar	Sub_alloc.cpp	/^unsigned char *****alloc5uchar(size_t n1, size_t n2, size_t n3,$/;"	kind:function	language:C++	signature:(size_t n1, size_t n2, size_t n3, size_t n4, size_t n5)
+alloc5ushort	Sub_alloc.cpp	/^unsigned short *****alloc5ushort(size_t n1, size_t n2, size_t n3,$/;"	kind:function	language:C++	signature:(size_t n1, size_t n2, size_t n3, size_t n4, size_t n5)
+alloc6	Sub_alloc.cpp	/^void ******alloc6 (size_t n1, size_t n2, size_t n3, size_t n4, size_t n5, size_t n6,$/;"	kind:function	language:C++	signature:(size_t n1, size_t n2, size_t n3, size_t n4, size_t n5, size_t n6, size_t size)
+alloc6float	Sub_alloc.cpp	/^float ******alloc6float(size_t n1, size_t n2, size_t n3, size_t n4, size_t n5, size_t n6)$/;"	kind:function	language:C++	signature:(size_t n1, size_t n2, size_t n3, size_t n4, size_t n5, size_t n6)
+alloc6ushort	Sub_alloc.cpp	/^unsigned short ******alloc6ushort(size_t n1, size_t n2, size_t n3,$/;"	kind:function	language:C++	signature:(size_t n1, size_t n2, size_t n3, size_t n4, size_t n5, size_t n6)
+core01_func	Sub_Core_func.cpp	/^double core01_func(float **Vx_now, float **Vx_aft,$/;"	kind:function	language:C++	signature:(float **Vx_now, float **Vx_aft, float **Vxx_now, float **Vxx_aft, float **Vxz_now, float **Vxz_aft, float **Vz_now, float **Vz_aft, float **Vzx_now, float **Vzx_aft, float **Vzz_now, float **Vzz_aft, float **Txx_now, float **Txz_now,float **Tzz_now, float wavelet, float **DEN,float **absorbx,float **absorbz, struct PARAMETER *param)
+core02_func	Sub_Core_func.cpp	/^double core02_func(float **Txx_now, float **Txx_aft,$/;"	kind:function	language:C++	signature:(float **Txx_now, float **Txx_aft, float **Txxx_now, float **Txxx_aft, float **Txxz_now, float **Txxz_aft, float **Tzz_now, float **Tzz_aft, float **Tzzx_now, float **Tzzx_aft, float **Tzzz_now, float **Tzzz_aft, float **Txz_now, float **Txz_aft, float **Txzx_now, float **Txzx_aft, float **Txzz_now, float **Txzz_aft, float **Vx_now, float **Vz_now, float **lamda, float **miu, float wavelet, float **DEN,float **absorbx,float **absorbz,struct PARAMETER *param)
+divider	Makefile	/^divider="--------------------------------------------------------------------------------"$/;"	kind:macro	language:Make
+ex_tar	Makefile	/^ex_tar ="--exclude=*.sw? --exclude=*.log --exclude=*.[oe]"$/;"	kind:macro	language:Make
+forward_func	Sub_Forward_func.cpp	/^double forward_func(struct PARAMETER *param)$/;"	kind:function	language:C++	signature:(struct PARAMETER *param)
+free1	Sub_alloc.cpp	/^void free1 (void *p)$/;"	kind:function	language:C++	signature:(void *p)
+free1double	Sub_alloc.cpp	/^void free1double(double *p)$/;"	kind:function	language:C++	signature:(double *p)
+free1float	Sub_alloc.cpp	/^void free1float(float *p)$/;"	kind:function	language:C++	signature:(float *p)
+free1int	Sub_alloc.cpp	/^void free1int(int *p)$/;"	kind:function	language:C++	signature:(int *p)
+free2	Sub_alloc.cpp	/^void free2 (void **p)$/;"	kind:function	language:C++	signature:(void **p)
+free2double	Sub_alloc.cpp	/^void free2double(double **p)$/;"	kind:function	language:C++	signature:(double **p)
+free2float	Sub_alloc.cpp	/^void free2float(float **p)$/;"	kind:function	language:C++	signature:(float **p)
+free2int	Sub_alloc.cpp	/^void free2int(int **p)$/;"	kind:function	language:C++	signature:(int **p)
+free2ushort	Sub_alloc.cpp	/^void free2ushort(unsigned short **p)$/;"	kind:function	language:C++	signature:(unsigned short **p)
+free3	Sub_alloc.cpp	/^void free3 (void ***p)$/;"	kind:function	language:C++	signature:(void ***p)
+free3double	Sub_alloc.cpp	/^void free3double(double ***p)$/;"	kind:function	language:C++	signature:(double ***p)
+free3float	Sub_alloc.cpp	/^void free3float(float ***p)$/;"	kind:function	language:C++	signature:(float ***p)
+free3int	Sub_alloc.cpp	/^void free3int(int ***p)$/;"	kind:function	language:C++	signature:(int ***p)
+free3ushort	Sub_alloc.cpp	/^void free3ushort(unsigned short ***p)$/;"	kind:function	language:C++	signature:(unsigned short ***p)
+free4	Sub_alloc.cpp	/^void free4 (void ****p)$/;"	kind:function	language:C++	signature:(void ****p)
+free4float	Sub_alloc.cpp	/^void free4float(float ****p)$/;"	kind:function	language:C++	signature:(float ****p)
+free4int	Sub_alloc.cpp	/^void free4int(int ****p)$/;"	kind:function	language:C++	signature:(int ****p)
+free5	Sub_alloc.cpp	/^void free5 (void *****p)$/;"	kind:function	language:C++	signature:(void *****p)
+free5float	Sub_alloc.cpp	/^void free5float(float *****p)$/;"	kind:function	language:C++	signature:(float *****p)
+free5int	Sub_alloc.cpp	/^void free5int(int *****p)$/;"	kind:function	language:C++	signature:(int *****p)
+free5uchar	Sub_alloc.cpp	/^void free5uchar(unsigned char *****p)$/;"	kind:function	language:C++	signature:(unsigned char *****p)
+free5ushort	Sub_alloc.cpp	/^void free5ushort(unsigned short *****p)$/;"	kind:function	language:C++	signature:(unsigned short *****p)
+free6	Sub_alloc.cpp	/^void free6 (void ******p)$/;"	kind:function	language:C++	signature:(void ******p)
+free6float	Sub_alloc.cpp	/^void free6float(float ******p)$/;"	kind:function	language:C++	signature:(float ******p)
+free6ushort	Sub_alloc.cpp	/^void free6ushort(unsigned short ******p)$/;"	kind:function	language:C++	signature:(unsigned short ******p)
+free_surface_func	Sub_FreeSurface.cpp	/^double free_surface_func(float **V,$/;"	kind:function	language:C++	signature:(float **V, float **Txx_now, float **Txz_now,float **Tzz_now, struct PARAMETER *param)
+h_func	Sub_FreeSurface.cpp	/^double h_func(float **Txx_now, float **Txz_now,float **Tzz_now,$/;"	kind:function	language:C++	signature:(float **Txx_now, float **Txz_now,float **Tzz_now, struct PARAMETER *param)
+h_func	Sub_FreeSurface.cpp	/^double h_func(float **Txx_now, float **Txz_now,float **Tzz_now,$/;"	kind:prototype	language:C++	file:	signature:(float **Txx_now, float **Txz_now,float **Tzz_now, struct PARAMETER *param)
+il_func	Sub_FreeSurface.cpp	/^double il_func(float **Txx_now, float **Txz_now,float **Tzz_now,$/;"	kind:prototype	language:C++	file:	signature:(float **Txx_now, float **Txz_now,float **Tzz_now, struct PARAMETER *param)
+ir_func	Sub_FreeSurface.cpp	/^double ir_func(float **Txx_now, float **Txz_now,float **Tzz_now,$/;"	kind:prototype	language:C++	file:	signature:(float **Txx_now, float **Txz_now,float **Tzz_now, struct PARAMETER *param)
+main	Sub_alloc.cpp	/^main()$/;"	kind:function	language:C++	signature:()
+main	main.cpp	/^int main(int argc, char* argv[])$/;"	kind:function	language:C++	signature:(int argc, char* argv[])
+model_expand_func	Sub_Model_func.cpp	/^void model_expand_func(float **m_in, float **m_out, int npml, int nx, int nz)$/;"	kind:function	language:C++	signature:(float **m_in, float **m_out, int npml, int nx, int nz)
+model_expand_func	Sub_Model_func.cpp	/^void model_expand_func(float **m_in, float **m_out, int npml, int nx, int nz);$/;"	kind:prototype	language:C++	file:	signature:(float **m_in, float **m_out, int npml, int nx, int nz)
+model_func	Sub_Model_func.cpp	/^double model_func(struct PARAMETER *param,float **V, float **V_p, float **V_s,$/;"	kind:function	language:C++	signature:(struct PARAMETER *param,float **V, float **V_p, float **V_s, float **DEN, float **lamda, float **miu)
+obs_func	Sub_ObsSystem.cpp	/^double obs_func(struct PARAMETER* param)$/;"	kind:function	language:C++	signature:(struct PARAMETER* param)
+ol_func	Sub_FreeSurface.cpp	/^double ol_func(float **Txx_now, float **Txz_now,float **Tzz_now,$/;"	kind:prototype	language:C++	file:	signature:(float **Txx_now, float **Txz_now,float **Tzz_now, struct PARAMETER *param)
+or_func	Sub_FreeSurface.cpp	/^double or_func(float **Txx_now, float **Txz_now,float **Tzz_now,$/;"	kind:prototype	language:C++	file:	signature:(float **Txx_now, float **Txz_now,float **Tzz_now, struct PARAMETER *param)
+parameter_func	Sub_Parameter_func.cpp	/^double parameter_func(struct PARAMETER* param, struct Parameter* par)$/;"	kind:function	language:C++	signature:(struct PARAMETER* param, struct Parameter* par)
+pml_func	Sub_Pml_func.cpp	/^double pml_func(struct PARAMETER *param, float **absorbx, float **absorbz)$/;"	kind:function	language:C++	signature:(struct PARAMETER *param, float **absorbx, float **absorbz)
+pml_sub_func	Sub_Pml_func.cpp	/^double pml_sub_func(struct PARAMETER *param, float distance)$/;"	kind:function	language:C++	signature:(struct PARAMETER *param, float distance)
+pml_sub_func	Sub_Pml_func.cpp	/^double pml_sub_func(struct PARAMETER *param, float distance);$/;"	kind:prototype	language:C++	file:	signature:(struct PARAMETER *param, float distance)
+printpar_func	Sub_ParameterCardIO.cpp	/^int printpar_func(Parameter &par)$/;"	kind:function	language:C++	signature:(Parameter &par)
+profile_IO_func	Sub_DataIO.cpp	/^double profile_IO_func(struct PARAMETER *param, float **record)$/;"	kind:function	language:C++	signature:(struct PARAMETER *param, float **record)
+readpar_func	Sub_ParameterCardIO.cpp	/^int readpar_func(const string &fn_par, Parameter &par)$/;"	kind:function	language:C++	signature:(const string &fn_par, Parameter &par)
+realloc1	Sub_alloc.cpp	/^void *realloc1(void *v, size_t n1, size_t size)$/;"	kind:function	language:C++	signature:(void *v, size_t n1, size_t size)
+realloc1double	Sub_alloc.cpp	/^double *realloc1double(double *v, size_t n1)$/;"	kind:function	language:C++	signature:(double *v, size_t n1)
+realloc1float	Sub_alloc.cpp	/^float *realloc1float(float *v, size_t n1)$/;"	kind:function	language:C++	signature:(float *v, size_t n1)
+realloc1int	Sub_alloc.cpp	/^int *realloc1int(int *v, size_t n1)$/;"	kind:function	language:C++	signature:(int *v, size_t n1)
+rickerwavelet_func	Sub_RickerWavelat_func.cpp	/^double rickerwavelet_func(struct PARAMETER *param, float *signal)$/;"	kind:function	language:C++	signature:(struct PARAMETER *param, float *signal)
+stability_func	Sub_Stability_func.cpp	/^double stability_func(struct PARAMETER *param,float **V_p, float **V_s)$/;"	kind:function	language:C++	signature:(struct PARAMETER *param,float **V_p, float **V_s)
+time_slice_IO_func	Sub_DataIO.cpp	/^double time_slice_IO_func(struct PARAMETER *param,float **time_slice_data, char name[])$/;"	kind:function	language:C++	signature:(struct PARAMETER *param,float **time_slice_data, char name[])
+vl_func	Sub_FreeSurface.cpp	/^double vl_func(float **Txx_now, float **Txz_now,float **Tzz_now,$/;"	kind:prototype	language:C++	file:	signature:(float **Txx_now, float **Txz_now,float **Tzz_now, struct PARAMETER *param)
+vr_func	Sub_FreeSurface.cpp	/^double vr_func(float **Txx_now, float **Txz_now,float **Tzz_now,$/;"	kind:prototype	language:C++	file:	signature:(float **Txx_now, float **Txz_now,float **Tzz_now, struct PARAMETER *param)
+zero1double	Sub_alloc.cpp	/^void zero1double(double *p, size_t n1)$/;"	kind:function	language:C++	signature:(double *p, size_t n1)
+zero1float	Sub_alloc.cpp	/^void zero1float(float *p, size_t n1)$/;"	kind:function	language:C++	signature:(float *p, size_t n1)
+zero1int	Sub_alloc.cpp	/^void zero1int(int *p, size_t n1)$/;"	kind:function	language:C++	signature:(int *p, size_t n1)
+zero2double	Sub_alloc.cpp	/^void zero2double(double **p, size_t n1, size_t n2)$/;"	kind:function	language:C++	signature:(double **p, size_t n1, size_t n2)
+zero2float	Sub_alloc.cpp	/^void zero2float(float **p, size_t n1, size_t n2)$/;"	kind:function	language:C++	signature:(float **p, size_t n1, size_t n2)
+zero2int	Sub_alloc.cpp	/^void zero2int(int **p, size_t n1, size_t n2)$/;"	kind:function	language:C++	signature:(int **p, size_t n1, size_t n2)
+zero2ushort	Sub_alloc.cpp	/^void zero2ushort(unsigned short **p, size_t n1, size_t n2)$/;"	kind:function	language:C++	signature:(unsigned short **p, size_t n1, size_t n2)
+zero3double	Sub_alloc.cpp	/^void zero3double(double ***p, size_t n1, size_t n2, size_t n3)$/;"	kind:function	language:C++	signature:(double ***p, size_t n1, size_t n2, size_t n3)
+zero3float	Sub_alloc.cpp	/^void zero3float(float ***p, size_t n1, size_t n2, size_t n3)$/;"	kind:function	language:C++	signature:(float ***p, size_t n1, size_t n2, size_t n3)
+zero3int	Sub_alloc.cpp	/^void zero3int(int ***p, size_t n1, size_t n2, size_t n3)$/;"	kind:function	language:C++	signature:(int ***p, size_t n1, size_t n2, size_t n3)
+zero3ushort	Sub_alloc.cpp	/^void zero3ushort(unsigned short ***p, size_t n1, size_t n2, size_t n3)$/;"	kind:function	language:C++	signature:(unsigned short ***p, size_t n1, size_t n2, size_t n3)
+zero4float	Sub_alloc.cpp	/^void zero4float(float ****p, size_t n1, size_t n2, size_t n3, size_t n4)$/;"	kind:function	language:C++	signature:(float ****p, size_t n1, size_t n2, size_t n3, size_t n4)
+zeros_func	Sub_Zeros_func.cpp	/^double zeros_func(float **Vx_aft, float **Vxx_aft, float **Vxz_aft,$/;"	kind:function	language:C++	signature:(float **Vx_aft, float **Vxx_aft, float **Vxz_aft, float **Vx_now, float **Vxx_now, float **Vxz_now, float **Vz_aft, float **Vzx_aft, float **Vzz_aft, float **Vz_now, float **Vzx_now, float **Vzz_now, float **Txx_aft, float **Txxx_aft, float **Txxz_aft, float **Txx_now, float **Txxx_now,float **Txxz_now, float **Tzz_aft, float **Tzzx_aft, float **Tzzz_aft, float **Tzz_now, float **Tzzx_now, float **Tzzz_now, float **Txz_aft, float **Txzx_aft, float **Txzz_aft, float **Txz_now, float **Txzx_now, float **Txzz_now, float **record,struct PARAMETER *param)

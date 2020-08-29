@@ -6,30 +6,24 @@ using namespace arma;
 double profile_IO_func(struct PARAMETER *param, float **record)
 {
     FILE *fpr;
-    int i;
-
-    int nx=param->Nr;
-    int nt=param->Nt;
-    arma::Mat<float> seis(nt,nx,fill::zeros);
-    for(int ix=0; ix<nx; ix++)
-    {
-        for(int it=0; it<nt; it++)
-        {
-            seis(it,ix) = record[ix][it];
-        }
-    }
-    //seis.save("../file/record.dat",raw_binary);
 
 
-    fpr=fopen("../file/record.su","a+");
-    //fpr=fopen("/home/ss/data/Amoco_Sim/record.su","a+");
+    std::string fn_csp_out = param->fn_data_out
+        + "CSP_ns" + std::to_string(param->Ns)
+        + "_nx"+to_string(param->NX)
+        + "_nt"+std::to_string(param->Nt)
+        +".su";
+    const char* fn_csp_out_char = fn_csp_out.data();
+    fpr=fopen(fn_csp_out_char,"a+");
+
     SUHEAD hdr;
     memset(&hdr, 0, 240);//SUHEAD全部置零
 
+    if(param->dsx==0){param->dsx=1;}
+
     int num_shot=(param->nx_location-param->Sx[0])/param->dsx;
     float * ptr;
-
-    for(i=0; i<param->Nr; i++)
+    for(int i=0; i<param->Nr; i++)
     {
         hdr.dt     = 1e6*param->dt;
         hdr.ns     = param->Nt;
@@ -37,12 +31,12 @@ double profile_IO_func(struct PARAMETER *param, float **record)
         //hdr.fldr   = param->nx_location-param->PML;
         hdr.tracf  = i+1;
         hdr.sx     = (param->nx_location-param->PML)*param->dx;
-        hdr.sy     = (param->nz_location-param->PML)*param->dz;
+        hdr.sy     = 0;
         hdr.gx     = (param->Rx[num_shot][i]-param->PML)*param->dx;
-        hdr.gy     = (param->Rz[num_shot][i]-param->PML)*param->dz;
+        hdr.gy     = 0;
         hdr.sdepth = (param->Sz[num_shot]-param->PML)*param->dz;
-        hdr.selev  = hdr.sy;
-        hdr.gelev  = hdr.gy;
+        hdr.selev  = (param->nz_location-param->PML)*param->dz;
+        hdr.gelev  = (param->Rz[num_shot][i]-param->PML)*param->dz;
         hdr.offset = -(hdr.sx - hdr.gx);
         hdr.cdp    = (hdr.sx + hdr.gx) /2.0f / (param->dx*0.5f);
         //hdr.cdp    = 1;
@@ -51,8 +45,6 @@ double profile_IO_func(struct PARAMETER *param, float **record)
         fwrite( ptr , sizeof(float), param->Nt, fpr);
     }
     fclose(fpr);
-
-
 
 
     return 0.0;

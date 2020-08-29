@@ -1,5 +1,6 @@
 #ifndef MODEL_FUNC_H
 #define MODEL_FUNC_H
+
 #include "ShengShen_head.h"
 #include "Stability_func.h"
 

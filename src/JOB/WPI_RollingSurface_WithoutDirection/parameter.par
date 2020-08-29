@@ -1,0 +1,22 @@
+********************************************************************************
+**** 1: Path of Model **********************************************************
+/home/ss/WINDOWS/ELASTIC_WAVE_FD/model_WPI_RollingSurface/Mini_WPIVelocityModel_nz790_nx1076_background.dat
+**** 2: Path of data ObservationSystem *****************************************
+/home/ss/WINDOWS/ELASTIC_WAVE_FD/model_WPI_RollingSurface/surface_mini_nx1076.dat
+**** 3: MainPath of data Output ************************************************
+/home/ss/WINDOWS/ELASTIC_WAVE_FD/file/file_WPIRollingSurface_WithoutDirection/
+**** 4: |  nx  |  nz  |  nt  | (point,point,point) *****************************
+           1076   790    10000
+**** 5: |  dx  |  dz  |  dt  | (m,m,s) *****************************************
+           5.0    5.0    0.0004
+**** 6: |  ns  |  sx_first  |   sz_first  |  dsx  |  dsz |（Source:points）*****
+           1     300             0            20      0
+**** 7: |  nr  |  rx_first  |   rz_first  |  drx  |  drz | （Receiver:points）**
+           1076   0             0            1       0
+**** 8: |  NPML（points）*******************************************************
+           80
+**** 9: |  N_OMP_CORES (point) *************************************************
+           18
+****10: |  Wavelet_Frequence (Hz) **********************************************
+           28
+************** end *************************************************************

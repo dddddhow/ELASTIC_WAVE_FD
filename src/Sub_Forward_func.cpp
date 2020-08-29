@@ -9,8 +9,8 @@ double forward_func(struct PARAMETER *param)
     //---------------------------------------------//
     //                文件清除                     //
     //---------------------------------------------//
-
-    remove("../file/record.su");
+/*
+    remove("../file/CSP_ns5_nx400_nt2000.su");
     remove("../file/record.dat");
     remove("../file/Vx_time.dat");
     remove("../file/Vz_time.dat");
@@ -21,6 +21,7 @@ double forward_func(struct PARAMETER *param)
     remove("../file/zPML.dat");
     remove("../file/wavelet.dat");
     remove("../file/log.dat");
+*/
     //---------------------------------------------//
     //              变量申请及赋值                 //
     //---------------------------------------------//
@@ -139,7 +140,6 @@ double forward_func(struct PARAMETER *param)
     printf("\n");
     int i_timebar = 0;
     char timebar[25];
-    const char *timebar_lable = "|/-\\";
     timebar[0] = 0;
 
 
@@ -169,8 +169,8 @@ double forward_func(struct PARAMETER *param)
                 record,param);
 
         //炮显示设置
-        printf("    No:%d/All:%d Shot\t",num_shot+1,param->Ns);
-        printf("Position Of Source:[%fm,%fm]\n",(param->nx_location-param->PML)
+        printf("    No:%4d   /All:%4d  Shot\t",num_shot+1,param->Ns);
+        printf("Position Of Source:[%8.2fm,%8.2fm]\n",(param->nx_location-param->PML)
                 *param->dx,(param->nz_location-param->PML)*param->dz);
 
         //-----------------------------------------//
@@ -178,10 +178,12 @@ double forward_func(struct PARAMETER *param)
         //-----------------------------------------//
         if (param->log_flag == 1)
         {
+            std::string fn_log_out = param->fn_data_out + "log.txt";
+            const char* fn_log_out_char = fn_log_out.data();
+
             int temp_shot_log=num_shot+1;
             FILE *flog;
-
-            if((flog = fopen("../file/log.dat","a+"))!=NULL)
+            if((flog = fopen(fn_log_out_char,"a+"))!=NULL)
             {
                 fprintf(flog,"NO.");
                 fwrite(&temp_shot_log,sizeof(int),1,flog);
@@ -190,6 +192,8 @@ double forward_func(struct PARAMETER *param)
 
                 fprintf(flog,"\n");
             }
+
+            fclose(flog); //attention !!!!
 
         }
 
@@ -203,14 +207,9 @@ double forward_func(struct PARAMETER *param)
             //**进度条显示**//
             i_timebar=k*25/param->Nt;
             printf("    [%-25s][%d%%]\r", timebar, (i_timebar+1)*4);
-            //fflush(stdout);
+            fflush(stdout);
             timebar[i_timebar] = '#';
             timebar[i_timebar+1] = 0;
-
-            //if(k%100==0)
-            //{
-            //printf("    [%d]\n",k);
-            //}
 
             //*波场计算*//
             //计算速度
@@ -238,6 +237,14 @@ double forward_func(struct PARAMETER *param)
                     lamda, miu,signal[k],
                     DEN,absorbx,absorbz,param);
 
+            //自由地表
+            if(param->FreeSurface_flag == 1)
+            {
+                free_surface_func(V,
+                        Txx_now, Txz_now,Tzz_now,
+                        param);
+            }
+
             //-------------------------------------------//
             //               时间切片                    //
             //-------------------------------------------//
@@ -245,24 +252,23 @@ double forward_func(struct PARAMETER *param)
             if (param->time_vx_slice_save_flag == 1 && k%param->sdt == 0)
             {
                 arma::Mat<float> temp_slice(param->NZ,param->NX,fill::zeros);
-                for(int ix=0; ix<param->NX;ix++)
+                for(int ix=param->PML; ix<param->NX+param->PML;ix++)
                 {
-                    for(int iz=0; iz<param->NZ;iz++)
+                    for(int iz=param->PML; iz<param->NZ+param->PML;iz++)
                     {
-                        temp_slice(iz,ix)=Vx_now[ix][iz];
+                        temp_slice(iz-param->PML,ix-param->PML)=Vx_now[ix][iz];
                     }
                 }
                 vx_time_cube.slice(int(k*1.0/param->sdt))=temp_slice;
-                //time_slice_IO_func(param, Vx_now, "../file/Vx_time.dat");
             }
             if (param->time_vz_slice_save_flag == 1 && k%param->sdt == 0)
             {
                 arma::Mat<float> temp_slice(param->NZ,param->NX,fill::zeros);
-                for(int ix=0; ix<param->NX;ix++)
+                for(int ix=param->PML; ix<param->NX+param->PML;ix++)
                 {
-                    for(int iz=0; iz<param->NZ;iz++)
+                    for(int iz=param->PML; iz<param->NZ+param->PML;iz++)
                     {
-                        temp_slice(iz,ix)=Vz_now[ix][iz];
+                        temp_slice(iz-param->PML,ix-param->PML)=Vz_now[ix][iz];
                     }
                 }
                 vz_time_cube.slice(int(k*1.0/param->sdt))=temp_slice;
@@ -270,11 +276,11 @@ double forward_func(struct PARAMETER *param)
             if (param->time_p_slice_save_flag == 1 && k%param->sdt == 0)
             {
                 arma::Mat<float> temp_slice(param->NZ,param->NX,fill::zeros);
-                for(int ix=0; ix<param->NX;ix++)
+                for(int ix=param->PML; ix<param->NX+param->PML;ix++)
                 {
-                    for(int iz=0; iz<param->NZ;iz++)
+                    for(int iz=param->PML; iz<param->NZ+param->PML;iz++)
                     {
-                        temp_slice(iz,ix)=Txx_now[ix][iz];
+                        temp_slice(iz-param->PML,ix-param->PML)=Txx_now[ix][iz];
                     }
                 }
                 p_time_cube.slice(int(k*1.0/param->sdt))=temp_slice;
@@ -302,12 +308,78 @@ double forward_func(struct PARAMETER *param)
             }
         }
 
-        printf("Core:Velcoity & Stress Calculklate Finsh\n");
-        printf("//-----------------------------------------------------//\n\n");
 
         //-------------------------------------------//
-        //       存储地表地震记录record              //
+        //       存储地表地震记录record&snap         //
         //-------------------------------------------//
+
+        //slice snap
+        for(int k=0; k<param->Nt/param->sdt; k++)
+        {
+            if (param->time_vx_slice_save_flag == 1)
+            {
+                std::string name= param->fn_data_out+"snap/"
+                    +std::to_string(num_shot)+"Vx_t"
+                    +std::to_string(k*param->sdt) + "_nz"
+                    +std::to_string(param->NZ) + "_nx"
+                    +std::to_string(param->NX)
+                    +".dat";
+                vz_time_cube.slice(k).save(name,raw_binary);
+                vx_time_cube.slice(k).save(name,raw_binary);
+            }
+            if (param->time_vz_slice_save_flag == 1)
+            {
+                std::string name= param->fn_data_out+"snap/"
+                    +std::to_string(num_shot)+"Vz_t"
+                    +std::to_string(k*param->sdt) + "_nz"
+                    +std::to_string(param->NZ) + "_nx"
+                    +std::to_string(param->NX)
+                    +".dat";
+                vz_time_cube.slice(k).save(name,raw_binary);
+            }
+            if (param->time_p_slice_save_flag == 1)
+            {
+                std::string name= param->fn_data_out+"snap/"
+                    +std::to_string(num_shot)+"Txx_t"
+                    +std::to_string(k*param->sdt) + "_nz"
+                    +std::to_string(param->NZ) + "_nx"
+                    +std::to_string(param->NX)
+                    +".dat";
+                p_time_cube.slice(k).save(name,raw_binary);
+            }
+        }
+        //slice cube
+        if (param->time_vx_slice_save_flag == 1)
+        {
+            std::string name= param->fn_data_out+"snap/"
+                +std::to_string(num_shot)+"Vx_All_nt"
+                +std::to_string(param->Nt) + "_nz"
+                +std::to_string(param->NZ) + "_nx"
+                +std::to_string(param->NX)
+                +".dat";
+            vx_time_cube.save(name,raw_binary);
+        }
+        if (param->time_vz_slice_save_flag == 1)
+        {
+            std::string name= param->fn_data_out+"snap/"
+                +std::to_string(num_shot)+"Vz_All_nt"
+                +std::to_string(param->Nt) + "_nz"
+                +std::to_string(param->NZ) + "_nx"
+                +std::to_string(param->NX)
+                +".dat";
+            vz_time_cube.save(name,raw_binary);
+        }
+        if (param->time_p_slice_save_flag == 1)
+        {
+            std::string name= param->fn_data_out+"snap/"
+                +std::to_string(num_shot)+"Txx_All_nt"
+                +std::to_string(param->Nt) + "_nz"
+                +std::to_string(param->NZ) + "_nx"
+                +std::to_string(param->NX)
+                +".dat";
+            p_time_cube.save(name,raw_binary);
+        }
+
         //printf("//-----------------------------------------------------//\n");
         //printf("Saving Record Begin\n");
         //record
@@ -317,50 +389,70 @@ double forward_func(struct PARAMETER *param)
         }
 
     }
+    printf("Core:Velcoity & Stress Calculklate Finsh\n");
+    printf("//-----------------------------------------------------//\n\n");
+
+
     //slice snap
     for(int k=0; k<param->Nt/param->sdt; k++)
     {
-        if (param->time_vx_slice_save_flag == 1)
+        if (param->time_vx_slice_save_flag == 2)
         {
-            std::string name="../file/snap/vx_"+to_string(k*param->sdt);
-            //std::string name="/home/ss/data/Amoco_Sim/snap/vx_"+to_string(k*param->sdt);
+            std::string name= param->fn_data_out+"snap/Vx_t"
+                +std::to_string(k*param->sdt) + "_nz"
+                +std::to_string(param->NZ) + "_nx"
+                +std::to_string(param->NX)
+                +".dat";
+            vz_time_cube.slice(k).save(name,raw_binary);
             vx_time_cube.slice(k).save(name,raw_binary);
         }
-        if (param->time_vz_slice_save_flag == 1)
+        if (param->time_vz_slice_save_flag == 2)
         {
-            std::string name="../file/snap/vz_"+to_string(k*param->sdt);
-            //std::string name="/home/ss/data/Amoco_Sim/snap/vz_"+to_string(k*param->sdt);
+            std::string name= param->fn_data_out+"snap/Vz_t"
+                +std::to_string(k*param->sdt) + "_nz"
+                +std::to_string(param->NZ) + "_nx"
+                +std::to_string(param->NX)
+                +".dat";
             vz_time_cube.slice(k).save(name,raw_binary);
         }
-        if (param->time_p_slice_save_flag == 1)
+        if (param->time_p_slice_save_flag == 2)
         {
-            std::string name="../file/snap/Txx_"+to_string(k*param->sdt);
-            //std::string name="/home/ss/data/Amoco_Sim/snap/Txx_"+to_string(k*param->sdt);
+            std::string name= param->fn_data_out+"snap/Txx_t"
+                +std::to_string(k*param->sdt) + "_nz"
+                +std::to_string(param->NZ) + "_nx"
+                +std::to_string(param->NX)
+                +".dat";
             p_time_cube.slice(k).save(name,raw_binary);
         }
     }
     //slice cube
-    if (param->time_vx_slice_save_flag == 1)
+    if (param->time_vx_slice_save_flag == 2)
     {
-        vx_time_cube.save("../file/snap/vx_all.dat",raw_binary);
-        //vx_time_cube.save("/home/ss/data/Amoco_Sim/snap/vx_all.dat",raw_binary);
+        std::string name= param->fn_data_out+"snap/Vx_All_nt"
+            +std::to_string(param->Nt) + "_nz"
+            +std::to_string(param->NZ) + "_nx"
+            +std::to_string(param->NX)
+            +".dat";
+        vx_time_cube.save(name,raw_binary);
     }
-    if (param->time_vz_slice_save_flag == 1)
+    if (param->time_vz_slice_save_flag == 2)
     {
-        vz_time_cube.save("../file/snap/vz_all.dat",raw_binary);
-        //vz_time_cube.save("/home/ss/data/Amoco_Sim/snap/vz_all.dat",raw_binary);
+        std::string name= param->fn_data_out+"snap/Vz_All_nt"
+            +std::to_string(param->Nt) + "_nz"
+            +std::to_string(param->NZ) + "_nx"
+            +std::to_string(param->NX)
+            +".dat";
+        vz_time_cube.save(name,raw_binary);
     }
-    if (param->time_p_slice_save_flag == 1)
+    if (param->time_p_slice_save_flag == 2)
     {
-        p_time_cube.save("../file/snap/Txx_all.dat",raw_binary);
-        //p_time_cube.save("/home/ss/data/Amoco_Sim/snap/Txx_all.dat",raw_binary);
+        std::string name= param->fn_data_out+"snap/Txx_All_nt"
+            +std::to_string(param->Nt) + "_nz"
+            +std::to_string(param->NZ) + "_nx"
+            +std::to_string(param->NX)
+            +".dat";
+        p_time_cube.save(name,raw_binary);
     }
-
-
-    //printf("Saving Record Finish\n");
-    //printf("//-----------------------------------------------------//\n\n");
-
-
 
     printf("Finish\n");
     printf("//-----------------------------------------------------//\n\n");

@@ -1,5 +1,5 @@
 #ifndef STABILITY_FUNC_H
-#define STABLITY_FUNC_H
+#define STABILITY_FUNC_H
 #include"ShengShen_head.h"
 
 

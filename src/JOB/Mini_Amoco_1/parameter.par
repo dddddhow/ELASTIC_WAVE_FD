@@ -1,0 +1,22 @@
+********************************************************************************
+**** 1: Path of Model **********************************************************
+/home/ss/WINDOWS/ELASTIC_WAVE_FD/model/MiniAmoco_nz600_nx400_max1000.dat
+**** 2: Path of data ObservationSystem *****************************************
+/home/ss/WINDOWS/ELASTIC_WAVE_FD/model/surface_mini_nx400.dat
+**** 3: MainPath of data Output ************************************************
+/home/ss/WINDOWS/ELASTIC_WAVE_FD/file/
+**** 4: |  nx  |  nz  |  nt  | (point,point,point) *****************************
+           400   600    8000
+**** 5: |  dx  |  dz  |  dt  | (m,m,s) *****************************************
+          1.0    1.0    0.0001
+**** 6: |  ns  |  sx_first  |   sz_first  |   dsx  |  dsz |（Source:points）****
+            1       200           300         10       0
+**** 7: |  nr  |  rx_first  |   rz_first  |  drx   |  drz | （Receiver:points）*
+           400      0              0           1       0
+**** 8: | NPML（points）********************************************************
+          80
+**** 9: | N_OMP_CORES (point) **************************************************
+          12
+****10: | Wavelet_Frequence (Hz) ***********************************************
+          28
+************** end *************************************************************

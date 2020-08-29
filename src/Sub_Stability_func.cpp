@@ -24,7 +24,7 @@ double stability_func(struct PARAMETER *param,float **V_p, float **V_s)
 
     if(temp >= 0.784)
     {
-        printf("The S is %f\n >0.78", temp);
+        printf("The S is %f  > 0.78 \n", temp);
         printf("Error!! THE PARAMETER DOES NOT SATISFY THE STABILITY CONDITION!\n");
         exit(0);
     }

@@ -17,11 +17,11 @@ double rickerwavelet_func(struct PARAMETER *param, float *signal)
     }
 
     //导数形式
-/*    signal[0]=0;*/
+    //    signal[0]=0;
     //for (i=1;i<param->Lw;i++)
     //{
-        //signal[i]=(temp[i]-temp[i-1])*1.0/param->dt;
-/*    }*/
+    //signal[i]=(temp[i]-temp[i-1])*1.0/param->dt;
+    //}
 
     //雷克子波形式
     for (i=0; i<param->Lw; i++)
@@ -33,9 +33,11 @@ double rickerwavelet_func(struct PARAMETER *param, float *signal)
 
     if(param->wavelet_save_flag == 1)
     {
+        std::string fn_wavelet_out = param->fn_data_out + "wavelet.dat";
+        const char* fn_wavelet_out_char = fn_wavelet_out.data();
         //*雷克子波保存
         FILE *fp;
-        if((fp = fopen ("../file/wavelet", "w"))!=NULL)
+        if((fp = fopen (fn_wavelet_out_char, "w"))!=NULL)
         {
             for (i=0;i<param->Lw;i++)
             {

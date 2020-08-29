@@ -4,12 +4,16 @@
 #include <stdlib.h>
 #include <cstdlib>
 #include <ctime>
-#include <string.h>
+//#include <string.h>
 #include <unistd.h>
 #include <omp.h>
 #include <armadillo>
 #include "SUTrace_head.h"
 #include "Parameter_head.h"
 #include "alloc.h"
+
+
+using namespace std;
+using namespace arma;
 
 #define PI 3.1415926

@@ -1,7 +1,13 @@
 #pragma once
+
+#include <iostream>
+
+using namespace std;
+
 struct PARAMETER{
 
     //**模型参数
+    std::string fn_model_in;
     int NX;//x方向样点数
     int NZ;//z方向样点数
     int PML;//PML边界厚度
@@ -35,23 +41,29 @@ struct PARAMETER{
     float freq; //主频
 
     //**观测系统
+    std::string fn_ObservationSystem_location;
     int nx_location;
     int nz_location;
     //炮点
     int Ns;//炮数
     int dsx;
     int dsz;
+    int sx_first;
+    int sz_first;
     int *Sx;
     int *Sz;
     //检波点
     int Nr;
     int drx;
     int drz;
+    int rx_first;
+    int rz_first;
     int **Rx;
     int **Rz;
 
 
     //**输出参数
+    std:: string fn_data_out;
     int record_save_flag;
     int time_vx_slice_save_flag;
     int time_vz_slice_save_flag;
@@ -61,6 +73,8 @@ struct PARAMETER{
     int pml_save_flag;
     int wavelet_save_flag;
     int acoustic_flag;
+    int ObservationSystem_flag;
+    int FreeSurface_flag;
 
     //**并行设计
     int omp_ncores;

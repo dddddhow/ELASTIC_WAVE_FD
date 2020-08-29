@@ -9,6 +9,7 @@
 #include "Core_func.h"
 #include "Zeros_func.h"
 #include "Pml_func.h"
+#include "Free_Surface_Func.h"
 
 
 double forward_func(struct PARAMETER *param);
