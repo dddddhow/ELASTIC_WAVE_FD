@@ -19,27 +19,27 @@ double profile_IO_func(struct PARAMETER *param, float **record)
     SUHEAD hdr;
     memset(&hdr, 0, 240);//SUHEAD全部置零
 
-    if(param->dsx==0){param->dsx=1;}
-
-    int num_shot=(param->nx_location-param->Sx[0])/param->dsx;
+    int num_shot = param->nshot_count;
     float * ptr;
     for(int i=0; i<param->Nr; i++)
     {
-        hdr.dt     = 1e6*param->dt;
-        hdr.ns     = param->Nt;
-        hdr.fldr   = param->nx_location-param->PML;
-        //hdr.fldr   = param->nx_location-param->PML;
-        hdr.tracf  = i+1;
-        hdr.sx     = (param->nx_location-param->PML)*param->dx;
-        hdr.sy     = 0;
-        hdr.gx     = (param->Rx[num_shot][i]-param->PML)*param->dx;
-        hdr.gy     = 0;
-        hdr.sdepth = (param->Sz[num_shot]-param->PML)*param->dz;
-        hdr.selev  = (param->nz_location-param->PML)*param->dz;
-        hdr.gelev  = (param->Rz[num_shot][i]-param->PML)*param->dz;
-        hdr.offset = -(hdr.sx - hdr.gx);
-        hdr.cdp    = (hdr.sx + hdr.gx) /2.0f / (param->dx*0.5f);
-        //hdr.cdp    = 1;
+        hdr.dt     = 1e6*param->dt;                                              //时间采样 （微秒）
+        hdr.ns     = param->Nt;                                                  //时间采样点 （个）
+        hdr.fldr   = num_shot;                                                   //波场数 （个）
+        hdr.tracf  = i+1;                                                        //道集数 （个）
+
+        hdr.sx     = (param->Sx[num_shot]-param->PML)*param->dx;                  //炮点x坐标（米）
+        hdr.sy     = 0;                                                          //炮点y坐标 （米）
+        hdr.sdepth = (param->Sz[num_shot]-param->PML)*param->dz;                 //炮点z坐标（深度） （米）
+        hdr.selev  = (param->nz_location-param->PML)*param->dz;                  //炮点高程 （米）
+
+        hdr.gx     = (param->Rx[num_shot][i]-param->PML)*param->dx;              //检波点x坐标 （米）
+        hdr.gy     = 0;                                                          //检波点y坐标（米）
+        hdr.gelev  = (param->Rz[num_shot][i]-param->PML)*param->dz;              //检波点z坐标（深度） （米）
+
+        hdr.offset = -(hdr.sx - hdr.gx);                                         //偏移距
+        hdr.cdp    = (hdr.sx + hdr.gx) /2.0f / (param->dx*0.5f);                 //cdp号
+
         ptr = &(record[i][0]);
         fwrite( &hdr,           240,  1, fpr);
         fwrite( ptr , sizeof(float), param->Nt, fpr);

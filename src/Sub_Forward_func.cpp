@@ -9,19 +9,19 @@ double forward_func(struct PARAMETER *param)
     //---------------------------------------------//
     //                文件清除                     //
     //---------------------------------------------//
-/*
-    remove("../file/CSP_ns5_nx400_nt2000.su");
-    remove("../file/record.dat");
-    remove("../file/Vx_time.dat");
-    remove("../file/Vz_time.dat");
-    remove("../file/p_time.dat");
-    remove("../file/Model.dat");
-    remove("../file/Model_all.dat");
-    remove("../file/xPML.dat");
-    remove("../file/zPML.dat");
-    remove("../file/wavelet.dat");
-    remove("../file/log.dat");
-*/
+    /*
+       remove("../file/CSP_ns5_nx400_nt2000.su");
+       remove("../file/record.dat");
+       remove("../file/Vx_time.dat");
+       remove("../file/Vz_time.dat");
+       remove("../file/p_time.dat");
+       remove("../file/Model.dat");
+       remove("../file/Model_all.dat");
+       remove("../file/xPML.dat");
+       remove("../file/zPML.dat");
+       remove("../file/wavelet.dat");
+       remove("../file/log.dat");
+       */
     //---------------------------------------------//
     //              变量申请及赋值                 //
     //---------------------------------------------//
@@ -149,11 +149,13 @@ double forward_func(struct PARAMETER *param)
     //-----------------------------------------//
     for(int num_shot=0; num_shot<param->Ns; num_shot++)
     {
+        double t_single_shot_begin = omp_get_wtime();
 
         //观测系统
         //printf("    Sub Core 1 : Load the Observing System\n");
-        param->nx_location=param->Sx[num_shot];
-        param->nz_location=param->Sz[num_shot];
+        param->nshot_count = num_shot;
+        param->nx_location = param->Sx[num_shot];
+        param->nz_location = param->Sz[num_shot];
 
         //初始化
         zeros_func(Vx_aft,Vxx_aft,Vxz_aft,
@@ -169,33 +171,10 @@ double forward_func(struct PARAMETER *param)
                 record,param);
 
         //炮显示设置
-        printf("    No:%4d   /All:%4d  Shot\t",num_shot+1,param->Ns);
+        printf("    No.%4d   /All:%4d  Shot\t",num_shot+1,param->Ns);
         printf("Position Of Source:[%8.2fm,%8.2fm]\n",(param->nx_location-param->PML)
                 *param->dx,(param->nz_location-param->PML)*param->dz);
 
-        //-----------------------------------------//
-        //          日志文件书写                   //
-        //-----------------------------------------//
-        if (param->log_flag == 1)
-        {
-            std::string fn_log_out = param->fn_data_out + "log.txt";
-            const char* fn_log_out_char = fn_log_out.data();
-
-            int temp_shot_log=num_shot+1;
-            FILE *flog;
-            if((flog = fopen(fn_log_out_char,"a+"))!=NULL)
-            {
-                fprintf(flog,"NO.");
-                fwrite(&temp_shot_log,sizeof(int),1,flog);
-                fprintf(flog,"/ALL:");
-                fwrite(&param->Ns,sizeof(int),1,flog);
-
-                fprintf(flog,"\n");
-            }
-
-            fclose(flog); //attention !!!!
-
-        }
 
         //-----------------------------------------//
         //            波场时间递推计算             //
@@ -205,11 +184,15 @@ double forward_func(struct PARAMETER *param)
         {
 
             //**进度条显示**//
+
+            if( int (k*25.0/param->Nt*10000) % 10000 == 0)
+            {
             i_timebar=k*25/param->Nt;
             printf("    [%-25s][%d%%]\r", timebar, (i_timebar+1)*4);
             fflush(stdout);
             timebar[i_timebar] = '#';
             timebar[i_timebar+1] = 0;
+            }
 
             //*波场计算*//
             //计算速度
@@ -240,9 +223,9 @@ double forward_func(struct PARAMETER *param)
             //自由地表
             if(param->FreeSurface_flag == 1)
             {
-                free_surface_func(V,
-                        Txx_now, Txz_now,Tzz_now,
-                        param);
+                //free_surface_func(V,
+                //Txx_now, Txz_now,Tzz_now,
+                //param);
             }
 
             //-------------------------------------------//
@@ -388,71 +371,16 @@ double forward_func(struct PARAMETER *param)
             profile_IO_func(param, record);
         }
 
+        fflush(stdout);
+        double t_single_shot_end = omp_get_wtime();
+        cout<<"                                This shot cost [ "<<t_single_shot_end - t_single_shot_begin <<" ] s"<<endl;
+
     }
+
+
     printf("Core:Velcoity & Stress Calculklate Finsh\n");
     printf("//-----------------------------------------------------//\n\n");
 
-
-    //slice snap
-    for(int k=0; k<param->Nt/param->sdt; k++)
-    {
-        if (param->time_vx_slice_save_flag == 2)
-        {
-            std::string name= param->fn_data_out+"snap/Vx_t"
-                +std::to_string(k*param->sdt) + "_nz"
-                +std::to_string(param->NZ) + "_nx"
-                +std::to_string(param->NX)
-                +".dat";
-            vz_time_cube.slice(k).save(name,raw_binary);
-            vx_time_cube.slice(k).save(name,raw_binary);
-        }
-        if (param->time_vz_slice_save_flag == 2)
-        {
-            std::string name= param->fn_data_out+"snap/Vz_t"
-                +std::to_string(k*param->sdt) + "_nz"
-                +std::to_string(param->NZ) + "_nx"
-                +std::to_string(param->NX)
-                +".dat";
-            vz_time_cube.slice(k).save(name,raw_binary);
-        }
-        if (param->time_p_slice_save_flag == 2)
-        {
-            std::string name= param->fn_data_out+"snap/Txx_t"
-                +std::to_string(k*param->sdt) + "_nz"
-                +std::to_string(param->NZ) + "_nx"
-                +std::to_string(param->NX)
-                +".dat";
-            p_time_cube.slice(k).save(name,raw_binary);
-        }
-    }
-    //slice cube
-    if (param->time_vx_slice_save_flag == 2)
-    {
-        std::string name= param->fn_data_out+"snap/Vx_All_nt"
-            +std::to_string(param->Nt) + "_nz"
-            +std::to_string(param->NZ) + "_nx"
-            +std::to_string(param->NX)
-            +".dat";
-        vx_time_cube.save(name,raw_binary);
-    }
-    if (param->time_vz_slice_save_flag == 2)
-    {
-        std::string name= param->fn_data_out+"snap/Vz_All_nt"
-            +std::to_string(param->Nt) + "_nz"
-            +std::to_string(param->NZ) + "_nx"
-            +std::to_string(param->NX)
-            +".dat";
-        vz_time_cube.save(name,raw_binary);
-    }
-    if (param->time_p_slice_save_flag == 2)
-    {
-        std::string name= param->fn_data_out+"snap/Txx_All_nt"
-            +std::to_string(param->Nt) + "_nz"
-            +std::to_string(param->NZ) + "_nx"
-            +std::to_string(param->NX)
-            +".dat";
-        p_time_cube.save(name,raw_binary);
-    }
 
     printf("Finish\n");
     printf("//-----------------------------------------------------//\n\n");

@@ -43,41 +43,53 @@ int readpar_func(const string &fn_par, Parameter &par)
             continue;
         }
         LineCount++;
-        if (LineCount > TJU_NLINE_PAR)
-        {
-            break;
-        }
+
+        //printf("%d-th line=%s\n",LineCount,line); //DEBUG FOR CARDIO
         switch (LineCount)
         {
             case 1:
-                sscanf(line, "%s", Par->fn_path_of_model_in_char);
+                sscanf(line, "%s",Par->fn_path_of_model_in_char);
                 break;
             case 2:
-                sscanf(line, "%s", Par->fn_path_of_ObservationSystem_char);
+                sscanf(line, "%s",Par->fn_path_of_ObservationSystem_char);
                 break;
             case 3:
-                sscanf(line, "%s", Par->fn_path_of_data_output_char);
+                sscanf(line, "%s",Par->fn_path_of_data_output_char);
                 break;
             case 4:
-                sscanf(line, "%d  %d %d", &Par->nx, &Par->nz, &Par->nt);
+                sscanf(line, "%d %d %d",&Par->nx,&Par->nz,&Par->nt);
                 break;
             case 5:
-                sscanf(line, "%f %f %f", &Par->dx, &Par->dz, &Par->dt);
+                sscanf(line, "%f %f %f",&Par->dx,&Par->dz,&Par->dt);
                 break;
             case 6:
-                sscanf(line, "%d %d %d %d %d", &Par->ns, &Par->sx_first, &Par->sz_first, &Par->dsx, &Par->dsz);
+                sscanf(line, "%d %d",&Par->ns,&Par->nr);
                 break;
             case 7:
-                sscanf(line, "%d %d %d %d %d", &Par->nr, &Par->rx_first, &Par->rz_first, &Par->drx, &Par->drz);
+                sscanf(line, "%d",&Par->npml);
                 break;
             case 8:
-                sscanf(line, "%d", &Par->npml);
+                sscanf(line, "%d",&Par->n_omp_cores);
                 break;
             case 9:
-                sscanf(line, "%d", &Par->n_omp_cores);
+                sscanf(line, "%f",&Par->wavelet_frequence);
                 break;
             case 10:
-                sscanf(line, "%f", &Par->wavelet_frequence);
+                sscanf(line, "%d",&Par->flag_snap_sdt);
+                break;
+            case 11:
+                sscanf(line, "%d",&Par->FreeSurface_flag);
+                break;
+            case 12:
+                sscanf(line, "%d",&Par->flag_acoustic_elastic);
+                break;
+            case 13:
+                sscanf(line, "%d %d %d", &Par->flag_record_save, &Par->flag_model_save, &Par->flag_wavelet_save);
+                break;
+            case 14:
+                sscanf(line, "%d %d %d", &Par->flag_snap_vx_save, &Par->flag_snap_vz_save, &Par->flag_snap_p_save);
+                break;
+            default:
                 break;
         }
     }
@@ -111,28 +123,118 @@ int printpar_func(Parameter &par)
     printf("* 4 Parameter Of Model   :\n");
     printf("*                        : (nx,nz,nt) -> (%6d,%6d,%6d)\n", Par->nx, Par->nz,Par->nt);
     printf("*                        : (dx,dz,dt) -> (%6.2fm,%6.2fm,%6.5fs)\n", Par->dx,Par->dz, Par->dt);
-    printf("\n");
-
-    printf("              nx=%6d  dx=%6.2fm\n",Par->nx,Par->dx);
-    printf(" --------------------------------------------- \n");
-    printf("|                                             |\n");
-    printf("|                                             |\n");
-    printf("|                  Model Show                 | nz=%6d\n",Par->nz);
-    printf("|                                             | dz=%6.2fm\n",Par->dz);
-    printf("|                                             |\n");
-    printf("|                                             |\n");
-    printf(" -------------------------------------------- \n");
     printf("\n\n");
 
+    {
+        int nz=int (Par->nz *1.0 / Par->nx *20 *1.0 /2);
+        printf("              nx=%6d  dx=%6.2fm\n",Par->nx,Par->dx);
+        printf(" -------------------------------------------------- \n");
+        for(int iz=0; iz<nz-1; iz++)
+        {
+            printf("|                                                  |\n");
+        }
+        printf("|                     Model Show                   | nz=%6d\n",Par->nz);
+        printf("|                                                  | dz=%6.2fm\n",Par->dz);
+        for(int iz=0; iz<nz-1; iz++)
+        {
+            printf("|                                                  |\n");
+        }
+        printf(" -------------------------------------------------- \n");
+        printf("\n\n");
+    }
 
     printf("* 5 Parameter Of ObservationSystem :\n");
-    printf("*                        : (nx)                ->  %6d\n", Par->ns);
-    printf("*                        : (sx_first,sz_first) -> (%6d,%6d) point\n", Par->sx_first,Par->sz_first);
-    printf("*                        : (dsx,dsz)           -> (%6d,%6d) point\n", Par->dsx,Par->dsz);
-    printf("*                        : (nr)                ->  %6d\n", Par->nr);
-    printf("*                        : (rx_first,rz_first) -> (%6d,%6d) point\n", Par->rx_first,Par->rz_first);
-    printf("*                        : (drx,drz)           -> (%6d,%6d) point\n", Par->drx,Par->drz);
+    printf("*        : (ns,nr)                ->  (%6d,%6d)\n", Par->ns,Par->nr);
+
+    printf("*        : FreeSurface_flag       ->  (%6d)\n",Par->FreeSurface_flag);
+    if(Par->FreeSurface_flag == 0)
+    {
+        printf("           The (Upper)Surface is Absorbing boundary.\n");
+    }
+    if(Par->FreeSurface_flag == 1)
+    {
+        printf("           The (Upper)Surface is FreeSurfce.\n");
+    }
     printf("\n\n");
+
+    printf("* 6 Parameter Of Data Save :\n");
+    printf("*        : flag_record_save   -> (%6d) -> ",Par->flag_record_save);
+    if(Par->flag_record_save == 1)
+    {
+        printf(" [Yes] \n");
+    }
+    else
+    {
+        printf(" [No]  \n");
+    }
+
+    printf("*        : flag_model_save    -> (%6d) -> ",Par->flag_model_save);
+    if(Par->flag_model_save == 1)
+    {
+        printf(" [Yes] \n");
+    }
+    else
+    {
+        printf(" [No]  \n");
+    }
+
+    printf("*        : flag_wavelet_save  -> (%6d) -> ",Par->flag_wavelet_save);
+    if(Par->flag_wavelet_save == 1)
+    {
+        printf(" [Yes] \n");
+    }
+    else
+    {
+        printf(" [No]  \n");
+    }
+
+
+    printf("*        : flag_snap_vx_save  -> (%6d) -> ",Par->flag_snap_vx_save);
+    if(Par->flag_snap_vx_save == 1)
+    {
+        printf(" [Yes] \n");
+    }
+    else
+    {
+        printf(" [No]  \n");
+    }
+
+    printf("*        : flag_snap_vz_save  -> (%6d) -> ",Par->flag_snap_vz_save);
+    if(Par->flag_snap_vz_save == 1)
+    {
+        printf(" [Yes] \n");
+    }
+    else
+    {
+        printf(" [No]  \n");
+    }
+
+
+    printf("*        : flag_snap_p_save   -> (%6d) -> ",Par->flag_snap_p_save);
+    if(Par->flag_snap_p_save == 1)
+    {
+        printf(" [Yes] \n");
+    }
+    else
+    {
+        printf(" [No]  \n");
+    }
+    printf("*        : flag_snap_sdt      -> (%6d)",Par->flag_snap_sdt);
+    printf("\n\n");
+
+
+    printf("* 7 flag Of forward function :\n");
+    printf("*        : flag_forward_function -> (%6d) -> ",Par->flag_acoustic_elastic);
+    if(Par->flag_acoustic_elastic == 0)
+    {
+        printf(" [Acoustic] \n");
+    }
+    if(Par->flag_acoustic_elastic == 1)
+    {
+        printf(" [ELASTIC] \n");
+    }
+    printf("\n");
+
 
 
     printf("======================================================================\n");

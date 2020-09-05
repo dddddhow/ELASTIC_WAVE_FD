@@ -49,12 +49,15 @@ double free_surface_func(float **V,
             //h_func(Txx_now, Txz_now,Tzz_now, param);
             int iz_temp=surface(ix);
             Txz_now[ix][iz_temp]=0;
-            Txz_now[ix][iz_temp-1]=-Txz_now[ix][iz_temp+1];
-            Txz_now[ix][iz_temp-2]=-Txz_now[ix][iz_temp+2];
+            //Txz_now[ix][iz_temp-1]=-Txz_now[ix][iz_temp+1];
+            //Txz_now[ix][iz_temp-2]=-Txz_now[ix][iz_temp+2];
+            //Txz_now[ix][iz_temp-3]=-Txz_now[ix][iz_temp+3];
 
-            Txz_now[ix][iz_temp]=0;
-            Tzz_now[ix][iz_temp-1]=Tzz_now[ix][iz_temp+1];
-            Tzz_now[ix][iz_temp-2]=Tzz_now[ix][iz_temp+2];
+            //Txz_now[ix][iz_temp]=0;
+            //Tzz_now[ix][iz_temp-1]=Tzz_now[ix][iz_temp+1];
+            //Tzz_now[ix][iz_temp-2]=Tzz_now[ix][iz_temp+2];
+            //Tzz_now[ix][iz_temp-3]=Tzz_now[ix][iz_temp+3];
+
         }
 
         //左垂直边界点VL

@@ -4,7 +4,9 @@
 double parameter_func(struct PARAMETER* param, struct Parameter* par)
 {
 
+    //=============================请勿修改以下参数===========================//
     //**数据保存设置
+/*
     param -> acoustic_flag         = 1;  //1表示弹性波、0表示声波压力P
     param->record_save_flag        = 1;  //1表示保存地震剖面，其他数字表示不保存
     param->time_vx_slice_save_flag = 0;  //1表示保存时间切片，其他数字表示不保存
@@ -14,40 +16,36 @@ double parameter_func(struct PARAMETER* param, struct Parameter* par)
     param->model_save_flag         = 1;  //1表示输出速度模型，其他数字表示不保存
     param->pml_save_flag           = 0;  //1表示保存PML模型,其他数字不保存
     param->wavelet_save_flag       = 0;  //1表示保存子波，其他数字不保存
-    param->ObservationSystem_flag  = 0;  //0表示地表接收，1表示三边接收（地表+两侧），2表示四周接收
-    param->FreeSurface_flag        = 1;  //0表示吸收地表，1表示自由地表（水平）
+*/
 
 
+    param -> acoustic_flag         = par->flag_acoustic_elastic;  //1表示弹性波、0表示声波压力P
+    param->record_save_flag        = par->flag_record_save;       //1表示保存地震剖面，其他数字表示不保存
+    param->time_vx_slice_save_flag = par->flag_snap_vx_save;      //1表示保存时间切片，其他数字表示不保存
+    param->time_vz_slice_save_flag = par->flag_snap_vz_save;      //1表示保存时间切片，其他数字表示不保存
+    param->time_p_slice_save_flag  = par->flag_snap_p_save;       //1表示保存时间切片，其他数字表示不保存
+    param->sdt                     = par->flag_snap_sdt;          //时间切片保存间隔
+    param->model_save_flag         = par->flag_model_save;        //1表示输出速度模型，其他数字表示不保存
+    param->pml_save_flag           = 0;                           //1表示保存PML模型,其他数字不保存
+    param->wavelet_save_flag       = par->flag_wavelet_save;      //1表示保存子波，其他数字不保存
 
-
-
-    //=============================请勿修改以下参数===========================//
     //**模型参数
     param -> fn_model_in = par -> fn_path_of_model_in;    //速度模型路径+名称
     param -> fn_data_out = par -> fn_path_of_data_output; //输出文件路径
 
-    param -> PML    = par -> npml;                  //PML边界厚度
-    param -> NX     = par -> nx;                    //x方向样点数
-    param -> NZ     = par -> nz;                    //z方向样点数
-    param -> Nt     = par -> nt;                    //模拟时间样点数
-    param -> dx     = par -> dx;                    //x方向取样(m)
-    param -> dz     = par -> dz;                    //z方向取样(m)
-    param -> dt     = par -> dt;                    //时间取样(s)
+    param -> PML    = par -> npml;                        //PML边界厚度
+    param -> NX     = par -> nx;                          //x方向样点数
+    param -> NZ     = par -> nz;                          //z方向样点数
+    param -> Nt     = par -> nt;                          //模拟时间样点数
+    param -> dx     = par -> dx;                          //x方向取样(m)
+    param -> dz     = par -> dz;                          //z方向取样(m)
+    param -> dt     = par -> dt;                          //时间取样(s)
 
     //**观测系统
     param -> fn_ObservationSystem_location = par->fn_path_of_ObservationSystem;
-    param -> Ns     = par -> ns;                    //炮数
-    param -> Nr     = par -> nr;                    //检波器数目
-
-    param -> dsx    = par -> dsx;
-    param -> dsz    = par -> dsz;
-    param -> drx    = par -> drx;
-    param -> drz    = par -> drz;
-
-    param -> sx_first = par -> sx_first ;
-    param -> sz_first = par -> sz_first ;
-    param -> rx_first = par -> rx_first ;
-    param -> rz_first = par -> rz_first ;
+    param->FreeSurface_flag        = par->FreeSurface_flag;  //0表示吸收地表，1表示自由地表（水平）
+    param -> Ns     = par -> ns;                             //炮数
+    param -> Nr     = par -> nr;                             //检波器数目
 
 
     //**并行设计

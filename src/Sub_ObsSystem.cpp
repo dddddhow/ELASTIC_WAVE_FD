@@ -13,148 +13,56 @@ double obs_func(struct PARAMETER* param)
     int npml     = param->PML;
 
     int ns       = param->Ns;                     //炮数
-    int sx_first = param->sx_first;               //起始炮位置 横坐标
-    //int sz_first = param->sz_first;               //起始炮位置 纵坐标
-    int dsx      = param->dsx;                    //横向炮间距
-    //int dsz      = param->dsz;                    //纵向炮间距
-
     int nr       = param->Nr;                     //检波器数目
-    int rx_first = param->rx_first;               //第一检波器位置 横坐标
-    int rz_first = param->rz_first;               //第一检波器位置 纵坐标
-    int drx      = param->drx;                    //横向检波器间距
-    int drz      = param->drz;                    //纵向检波器间距
+
+    //观测系统加载
+    arma::Col<float> sur_location(nx);  //地表面在模型中的高程（点）
+    std::string fn_ObservationSystem_location_surface = param->fn_ObservationSystem_location
+        +"surface_mini_nx"+std::to_string(nx)+".dat";
+    sur_location.load(fn_ObservationSystem_location_surface,raw_binary);
+
+    arma::Col<float> shot_x(ns,fill::zeros);  //炮点横坐标 （点）
+    arma::Col<float> shot_z(ns,fill::zeros);  //炮点纵坐标 （点）
+    arma::Mat<float> geophone_x(nr,ns,fill::zeros); //检波器横坐标 （点）
+    arma::Mat<float> geophone_z(nr,ns,fill::zeros); //检波器纵坐标 （点）
+
+    string fn_ObservationSystem_location_shot_x = param->fn_ObservationSystem_location
+        +"shot_x_ns"+std::to_string(ns)+".dat";
+    string fn_ObservationSystem_location_shot_z = param->fn_ObservationSystem_location
+        +"shot_z_ns"+std::to_string(ns)+".dat";
+    string fn_ObservationSystem_location_geophone_x = param->fn_ObservationSystem_location
+        +"geophone_x_ns"+std::to_string(ns)+"_nr"+std::to_string(nr)+".dat";
+    string fn_ObservationSystem_location_geophone_z = param->fn_ObservationSystem_location
+        +"geophone_z_ns"+std::to_string(ns)+"_nr"+std::to_string(nr)+".dat";
+
+    shot_x.load(fn_ObservationSystem_location_shot_x,raw_ascii);
+    shot_z.load(fn_ObservationSystem_location_shot_z,raw_ascii);
+    geophone_x.load(fn_ObservationSystem_location_geophone_x,raw_ascii);
+    geophone_z.load(fn_ObservationSystem_location_geophone_z,raw_ascii);
+
+    shot_x.as_col();
+    shot_z.as_col();
+    geophone_x.reshape(nr,ns);
+    geophone_z.reshape(nr,ns);
 
 
-    arma::Col<float> sur_location(nx);
-    std::string fn_ObservationSystem_location = param->fn_ObservationSystem_location;
-    sur_location.load(fn_ObservationSystem_location,raw_binary);
-
+    //Arma矩阵格式转给alloc格式矩阵
     param->Sx=alloc1int(ns);
     param->Sz=alloc1int(ns);
     param->Rx=alloc2int(nr,ns);
     param->Rz=alloc2int(nr,ns);
 
-
-
-    for(int ix=0; ix<ns; ix++)
+    for(int is=0; is<ns; is++)
     {
-        param->Sx[ix]=sx_first+ix*dsx+npml;
-        param->Sz[ix]=sur_location(param->Sx[ix]-npml)+npml;
-        //cout<<sx_first<<endl;
-        //cout<<param->Sx[ix] << "  "<<param->Sz[ix]<<endl;
-    }
-    /*
-       for(int is=0; is<ns; is++)
-       {
-       for(int ir=0; ir<nr; ir++)
-       {
-       param->Rx[is][ir]=ir+npml;
-       param->Rz[is][ir]=300;
-       }
-       }
-       */
-    if(param->ObservationSystem_flag == 0) // 地表接收
-    {
-        for(int ix=0; ix<ns; ix++)
+        param->Sx[is] = shot_x(is)+npml;
+        param->Sz[is] = shot_z(is)+npml;
+
+        for(int ir=0; ir<nr ;ir++)
         {
-            for(int ir=0; ir<nr; ir++)
-            {
-                param->Rx[ix][ir]=rx_first+drx*ir+npml;
-                param->Rz[ix][ir]=sur_location(param->Rx[ix][ir]-npml)+npml;
-                //param->Rz[ix][ir]=rz_first+drz*ir+npml;
-            }
+            param->Rx[is][ir] = geophone_x(ir,is)+npml;
+            param->Rz[is][ir] = geophone_z(ir,is)+npml;
         }
     }
-
-    if(param->ObservationSystem_flag == 1) // 三边接受
-    {
-        if(nr != nx+nz*2-2)
-        {
-            cout<<endl;
-            cout<<endl;
-            cout<<endl;
-            cout<<endl;
-            cout<<endl;
-            cout<<endl;
-            cout<<"ERROR!!! (The Parameters of Observation(nr) )"<<endl;
-            cout<<nr<<" != "<<nx+nz+nz-2<<endl;
-            cout<<endl;
-            cout<<endl;
-            cout<<endl;
-            cout<<endl;
-            cout<<endl;
-            cout<<endl;
-        }
-        else{
-            for(int ix=0; ix<ns; ix++)
-            {
-                for(int ir=0; ir<=nz-1; ir++)
-                {
-                    param->Rx[ix][ir]=npml;
-                    param->Rz[ix][ir]=npml+(nz-ir);
-                }
-                for(int ir=nz; ir<=nz+nx-3; ir++)
-                {
-                    param->Rx[ix][ir]=npml+(ir-nz+1);
-                    param->Rz[ix][ir]=npml;
-                }
-                for(int ir=nz+nx-2; ir<=nz+nz+nx-3; ir++)
-                {
-                    param->Rx[ix][ir]=npml+nx;
-                    param->Rz[ix][ir]=npml+(ir-nz-nx+2);
-                }
-            }
-        }
-    }
-
-
-    if(param->ObservationSystem_flag == 2) // 四周接收
-    {
-        if(nr != nx*2+nz*2-4)
-        {
-            cout<<endl;
-            cout<<endl;
-            cout<<endl;
-            cout<<endl;
-            cout<<endl;
-            cout<<endl;
-            cout<<"ERROR!!! (The Parameters of Observation(nr) )"<<endl;
-            cout<<nr<<" != "<<nx*2+nz+nz-4<<endl;
-            cout<<endl;
-            cout<<endl;
-            cout<<endl;
-            cout<<endl;
-            cout<<endl;
-            cout<<endl;
-        }
-        else{
-            for(int ix=0; ix<ns; ix++)
-            {
-                for(int ir=0; ir<=nz-1; ir++)
-                {
-                    param->Rx[ix][ir]=npml;
-                    param->Rz[ix][ir]=npml+(nz-ir);
-                }
-                for(int ir=nz; ir<=nz+nx-3; ir++)
-                {
-                    param->Rx[ix][ir]=npml+(ir-nz+1);
-                    param->Rz[ix][ir]=npml;
-                }
-                for(int ir=nz+nx-2; ir<=nz+nz+nx-3; ir++)
-                {
-                    param->Rx[ix][ir]=npml+nx;
-                    param->Rz[ix][ir]=npml+(ir-nz-nx+2);
-                }
-                for(int ir=nz+nx+nz-2; ir<=nz+nz+nx+nx-4; ir++)
-                {
-                    param->Rx[ix][ir]=npml+(ir-nz-nx-nz+2)+1;
-                    param->Rz[ix][ir]=npml+nz;
-                }
-            }
-        }
-    }
-
-
 
     printf("Setting Up The Obssystem Finish\n");
     printf("//-----------------------------------------------------//\n");

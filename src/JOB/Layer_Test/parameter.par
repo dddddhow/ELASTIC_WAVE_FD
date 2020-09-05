@@ -1,18 +1,18 @@
 ********************************************************************************
 **** 1: Path of Model **********************************************************
-/home/ss/WINDOWS/Model/SEG14_Chevron_Vpsmoothstarting.dat
+/home/ss/WINDOWS/ELASTIC_WAVE_FD/model/model_chervon/Mini_Chervon_VelocityModel_nz600_nx400.dat
 **** 2: Path of data ObservationSystem *****************************************
-/home/ss/WINDOWS/ELASTIC_WAVE_FD/model_WPI/surface_mini_nx1076.dat
+/home/ss/WINDOWS/ELASTIC_WAVE_FD/model/model_chervon/surface_mini_nx400.dat
 **** 3: MainPath of data Output ************************************************
-/home/ss/WINDOWS/ELASTIC_WAVE_FD/file/
+/home/ss/WINDOWS/ELASTIC_WAVE_FD/file/file_Chervon/
 **** 4: |  nx  |  nz  |  nt  | (point,point,point) *****************************
-           1076   790    10000
+           400    600    5000
 **** 5: |  dx  |  dz  |  dt  | (m,m,s) *****************************************
            5.0    5.0    0.0004
 **** 6: |  ns  |  sx_first  |   sz_first  |  dsx  |  dsz |（Source:points）*****
-           1     500             0            20      0
+           1      200           0            20      0
 **** 7: |  nr  |  rx_first  |   rz_first  |  drx  |  drz | （Receiver:points）**
-           1076   0             0            1       0
+           400    0             0            1       0
 **** 8: |  NPML（points）*******************************************************
            80
 **** 9: |  N_OMP_CORES (point) *************************************************

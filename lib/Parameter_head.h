@@ -44,6 +44,7 @@ struct PARAMETER{
     std::string fn_ObservationSystem_location;
     int nx_location;
     int nz_location;
+    int nshot_count;
     //炮点
     int Ns;//炮数
     int dsx;
@@ -73,7 +74,7 @@ struct PARAMETER{
     int pml_save_flag;
     int wavelet_save_flag;
     int acoustic_flag;
-    int ObservationSystem_flag;
+    //int ObservationSystem_flag;
     int FreeSurface_flag;
 
     //**并行设计
