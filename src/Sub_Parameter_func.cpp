@@ -49,6 +49,7 @@ double parameter_func(struct PARAMETER* param, struct Parameter* par)
 
 
     //**并行设计
+    param->mpi_ncores = par->n_mpi_cores;         //进程数
     param->omp_ncores = par->n_omp_cores;         //单进程 线程数目
 
     //计算空间大小

@@ -10,9 +10,9 @@ Date=$(shell date +%F_time%H)
 #--------------------------------------#
 Projn   =ELASTIC_WAVE_FD
 #--------------------------------------#
-CPP_CMPL_0=icpc
+#CPP_CMPL_0=icpc
+CPP_CMPL_0=mpicxx
 CPP_CMPL=$(CPP_CMPL_0) -O3 -std=c++11
-#CPP_CMPL=icc -std=c++11 -O2
 C_CMPL  =icc -O3
 F_CMPL  =gfortran	-O3 -cpp
 LINKER  =$(CPP_CMPL)

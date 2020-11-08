@@ -39,6 +39,7 @@ int main(int argc, char* argv[])
     double end = omp_get_wtime();
     double totaltime=end-start;
     printf("It took %f seconds\n",totaltime);
+
     return 0;
 
 }

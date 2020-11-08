@@ -69,7 +69,7 @@ int readpar_func(const string &fn_par, Parameter &par)
                 sscanf(line, "%d",&Par->npml);
                 break;
             case 8:
-                sscanf(line, "%d",&Par->n_omp_cores);
+                sscanf(line, "%d %d",&Par->n_mpi_cores,&Par->n_omp_cores);
                 break;
             case 9:
                 sscanf(line, "%f",&Par->wavelet_frequence);
@@ -224,7 +224,7 @@ int printpar_func(Parameter &par)
 
 
     printf("* 7 flag Of forward function :\n");
-    printf("*        : flag_forward_function -> (%6d) -> ",Par->flag_acoustic_elastic);
+    printf("*        : flag_of_function   -> (%6d) -> ",Par->flag_acoustic_elastic);
     if(Par->flag_acoustic_elastic == 0)
     {
         printf(" [Acoustic] \n");
@@ -235,7 +235,10 @@ int printpar_func(Parameter &par)
     }
     printf("\n");
 
-
+    printf("* 8 Parameter Of Parallel Computing :\n");
+    printf("*        : N_MPI              -> (%6d)\n",Par->n_mpi_cores);
+    printf("*        : N_OMP              -> (%6d)\n",Par->n_omp_cores);
+    printf("\n");
 
     printf("======================================================================\n");
     return 0;

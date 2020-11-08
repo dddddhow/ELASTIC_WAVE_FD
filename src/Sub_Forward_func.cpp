@@ -5,23 +5,6 @@ using namespace arma;
 
 double forward_func(struct PARAMETER *param)
 {
-
-    //---------------------------------------------//
-    //                文件清除                     //
-    //---------------------------------------------//
-    /*
-       remove("../file/CSP_ns5_nx400_nt2000.su");
-       remove("../file/record.dat");
-       remove("../file/Vx_time.dat");
-       remove("../file/Vz_time.dat");
-       remove("../file/p_time.dat");
-       remove("../file/Model.dat");
-       remove("../file/Model_all.dat");
-       remove("../file/xPML.dat");
-       remove("../file/zPML.dat");
-       remove("../file/wavelet.dat");
-       remove("../file/log.dat");
-       */
     //---------------------------------------------//
     //              变量申请及赋值                 //
     //---------------------------------------------//
@@ -100,11 +83,7 @@ double forward_func(struct PARAMETER *param)
     printf("//-----------------------------------------------------//\n");
     printf("Setting Up The Model Begin\n");
 
-
-
     model_func(param,V, V_p, V_s, DEN ,lamda, miu);
-
-
 
     printf("Setting Up The Model Finish\n");
     printf("//-----------------------------------------------------//\n\n");
@@ -143,11 +122,19 @@ double forward_func(struct PARAMETER *param)
     timebar[0] = 0;
 
 
-
     //-----------------------------------------//
     //          炮循环                         //
     //-----------------------------------------//
-    for(int num_shot=0; num_shot<param->Ns; num_shot++)
+    int argc;
+    char **argv;
+    MPI_Init(&argc, &argv);
+    int proc_id;
+    int proc_num;
+
+    MPI_Comm_rank(MPI_COMM_WORLD, &proc_id);
+    MPI_Comm_size(MPI_COMM_WORLD, &proc_num);
+
+    for (int num_shot = proc_id; num_shot < param->Ns; num_shot =num_shot + proc_num)
     {
         double t_single_shot_begin = omp_get_wtime();
 
@@ -171,10 +158,27 @@ double forward_func(struct PARAMETER *param)
                 record,param);
 
         //炮显示设置
-        printf("    No.%4d   /All:%4d  Shot\t",num_shot+1,param->Ns);
-        printf("Position Of Source:[%8.2fm,%8.2fm]\n",(param->nx_location-param->PML)
-                *param->dx,(param->nz_location-param->PML)*param->dz);
+        if(proc_id == 0)
+        {
+            int num_temp=num_shot+proc_num;
+            if(num_temp>param->Ns)
+            {
+                num_temp=param->Ns;
+            }
+            printf("    No.%d - No.%d /All:%d  Shot ,\t",num_shot+1,num_temp,param->Ns);
+            printf("    Sx : \t");
 
+            for(int i_temp=0; i_temp<proc_num; i_temp++)
+            {
+                if(num_shot+i_temp < param->Ns)
+                {
+                    int nx_location_temp = param->Sx[num_shot+i_temp];
+                    int nz_location_temp = param->Sz[num_shot+i_temp];
+                    printf(" [%6.2fm,%6.2fm] ",(nx_location_temp-param->PML)*param->dx,(nz_location_temp-param->PML)*param->dz);
+                }
+            }
+            printf("\n");
+        }
 
         //-----------------------------------------//
         //            波场时间递推计算             //
@@ -182,16 +186,14 @@ double forward_func(struct PARAMETER *param)
         //printf("    Sub Core 2 :Time Recursion of single Shot\n");
         for(int k = 0; k < param->Nt; k++) //波场时间递推计算开始
         {
-
             //**进度条显示**//
-
-            if( int (k*25.0/param->Nt*10000) % 10000 == 0)
+            if( int (k*25.0/param->Nt*10000) % 10000 == 0 && proc_id == 0)
             {
-            i_timebar=k*25/param->Nt;
-            printf("    [%-25s][%d%%]\r", timebar, (i_timebar+1)*4);
-            fflush(stdout);
-            timebar[i_timebar] = '#';
-            timebar[i_timebar+1] = 0;
+                i_timebar=k*25/param->Nt;
+                printf("    [%-25s][%d%%]\r", timebar, (i_timebar+1)*4);
+                //fflush(stdout);
+                timebar[i_timebar] = '#';
+                timebar[i_timebar+1] = 0;
             }
 
             //*波场计算*//
@@ -221,12 +223,12 @@ double forward_func(struct PARAMETER *param)
                     DEN,absorbx,absorbz,param);
 
             //自由地表
-            if(param->FreeSurface_flag == 1)
-            {
-                //free_surface_func(V,
-                //Txx_now, Txz_now,Tzz_now,
-                //param);
-            }
+            //if(param->FreeSurface_flag == 1)
+            //{
+            //free_surface_func(V,
+            //Txx_now, Txz_now,Tzz_now,
+            //param);
+            //}
 
             //-------------------------------------------//
             //               时间切片                    //
@@ -371,11 +373,14 @@ double forward_func(struct PARAMETER *param)
             profile_IO_func(param, record);
         }
 
-        fflush(stdout);
-        double t_single_shot_end = omp_get_wtime();
-        cout<<"                                This shot cost [ "<<t_single_shot_end - t_single_shot_begin <<" ] s"<<endl;
+        if(proc_id == 0)
+        {
+            double t_single_shot_end = omp_get_wtime();
+            printf("                  This part Shot cost %f s\n",t_single_shot_end - t_single_shot_begin);
+        }
 
     }
+    MPI_Finalize();
 
 
     printf("Core:Velcoity & Stress Calculklate Finsh\n");
