@@ -1,11 +1,7 @@
 #ifndef PARAMETER_IO_H
 #define PARAMETER_IO_H
 
-#include <armadillo>
-#include <iostream>
-
-using namespace std;
-using namespace arma;
+#include "./ShengShen_head.h"
 
 //============================================================================//
 //                                  参数卡结构体                              //
@@ -28,7 +24,7 @@ typedef struct Parameter
     float dx; float dz;  float dt;                                    // line 05
     int ns; int nr;                                                   // line 06
     int npml;                                                         // line 07
-    int n_omp_cores;                                                  // line 08
+    int n_mpi_cores; int n_omp_cores;                                 // line 08
     float wavelet_frequence;                                          // line 09
     int FreeSurface_flag;                                             // line 10
     int flag_record_save; int flag_model_save; int flag_wavelet_save; int flag_acoustic_elastic;

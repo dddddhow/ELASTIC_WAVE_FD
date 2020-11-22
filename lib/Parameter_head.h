@@ -79,6 +79,7 @@ struct PARAMETER{
 
     //**并行设计
     int omp_ncores;
+    int mpi_ncores;
 
 	//**计时设置
 	float tvx;
