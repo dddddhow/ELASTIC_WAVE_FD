@@ -4,30 +4,30 @@
 *                                                                              *
 ********************************************************************************
 **** 1: Path of Model **********************************************************
-/home/ss/WINDOWS/ELASTIC_WAVE_FD/model/model_mini_amoco/MiniAmoco_nz600_nx400.dat
+/home/ss/WINDOWS/ELASTIC_WAVE_FD/model/model_layer/Mini_Layer_VelocityModel_nz600_nx10000.dat
 **** 2: MainPath of data ObservationSystem *************************************
-/home/ss/WINDOWS/ELASTIC_WAVE_FD/model/model_mini_amoco/
+/home/ss/WINDOWS/ELASTIC_WAVE_FD/model/model_layer/
 **** 3: MainPath of data Output ************************************************
-/home/ss/WINDOWS/ELASTIC_WAVE_FD/file/2_MiniAmoco/
+/home/ss/WINDOWS/ELASTIC_WAVE_FD/file/3_Layer/
 ********************************************************************************
 *                                                                              *
 *                     PART 2 : THE PARAMETERS OF PROGRAM                       *
 *                                                                              *
 ********************************************************************************
 **** 4: |  nx  |  nz  |  nt          | (point,point,point) *********************
-           400   600    8000
+           10000   600    15000
 **** 5: |  dx  |  dz  |  dt          | (m,m,s) *********************************
            5.0    5.0    0.0004
 **** 6: |  ns  |  nr  |              | (points) ********************************
-           5     400
+           1     10000
 **** 7: |  NPML                      | (points) ********************************
            80
 **** 8: |  N_MPI_CORES | N_OMP_CORES | (point,point) ***************************
-           1             10
+           1             18
 **** 9: |  Wavelet_Frequence         | (Hz) ************************************
            28
 ****10: |  dst(SnapSave)             | (point) *********************************
-           200
+           100
 ********************************************************************************
 *                                                                              *
 *                     PART 3 : THE FLAGS OF PROGRAM                            *
@@ -40,5 +40,5 @@
 ****13: |  flag_RecordSave | flag_ModelSave  | flag_WaveletSave | (0 1) *********
            1                 1                  0
 ****14: |  flag_SnapVxSave | flag_SnapVzSave | flag_SnapPSave   | (0 1) ********
-           1                 1                  1
+           0                 1                  0
 ********************************************************************************

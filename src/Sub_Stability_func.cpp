@@ -26,6 +26,8 @@ double stability_func(struct PARAMETER *param,float **V_p, float **V_s)
     {
         printf("The S is %f  > 0.78 \n", temp);
         printf("Error!! THE PARAMETER DOES NOT SATISFY THE STABILITY CONDITION!\n");
+        printf("Max Vp is %f\n :",V_pmax);
+        printf("Max Vs is %f\n :",V_smax);
         exit(0);
     }
     else

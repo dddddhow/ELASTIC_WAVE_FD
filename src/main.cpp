@@ -7,6 +7,9 @@
 
 int main(int argc, char* argv[])
 {
+
+
+    MPI_Init(&argc, &argv);
     //---------------------------------------------//
     //            计时器--开始                     //
     //---------------------------------------------//
@@ -36,6 +39,8 @@ int main(int argc, char* argv[])
     //---------------------------------------------//
     //            计时器--结束                     //
     //---------------------------------------------//
+    MPI_Finalize();
+
     double end = omp_get_wtime();
     double totaltime=end-start;
     printf("It took %f seconds\n",totaltime);

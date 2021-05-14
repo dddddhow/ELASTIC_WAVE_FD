@@ -22,7 +22,7 @@ C_CMPL_FLAG   = -Wno-unused-result
 CPP_CMPL_FLAG = -fmax-errors=5 -DARMA_ALLOW_FAKE_GCC
 F_CMPL_FLAG   =
 LINKER_FLAG   =
-LINKLIBS	  = -lm -larmadillo
+LINKLIBS	  = -lm -lpowershen
 
 CSrc   =$(wildcard *.c)
 CppSrc =$(wildcard *.cpp)

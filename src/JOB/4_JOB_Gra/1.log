@@ -1,0 +1,80 @@
+======================================================================
+PrintPar : 
+
+* 1  Path of model       : /home/ss/WINDOWS/ELASTIC_WAVE_FD/model/model_gra/Mini_Gra_VelocityModel_nz1001_nx3201.dat 
+* 2  Path of ObsSystem   : /home/ss/WINDOWS/ELASTIC_WAVE_FD/model/model_gra/ 
+* 3  Path of Data Out    : /home/ss/WINDOWS/ELASTIC_WAVE_FD/file/4_gra/ 
+
+
+* 4 Parameter Of Model   :
+*                        : (nx,nz,nt) -> (  3201,  1001, 20000)
+*                        : (dx,dz,dt) -> (  5.00m,  5.00m,0.00050s)
+
+
+              nx=  3201  dx=  5.00m
+ -------------------------------------------------- 
+|                                                  |
+|                                                  |
+|                     Model Show                   | nz=  1001
+|                                                  | dz=  5.00m
+|                                                  |
+|                                                  |
+ -------------------------------------------------- 
+
+
+* 5 Parameter Of ObservationSystem :
+*        : (ns,nr)                ->  (     1,  3201)
+*        : FreeSurface_flag       ->  (     0)
+           The (Upper)Surface is Absorbing boundary.
+
+
+* 6 Parameter Of Data Save :
+*        : flag_record_save   -> (     1) ->  [Yes] 
+*        : flag_model_save    -> (     1) ->  [Yes] 
+*        : flag_wavelet_save  -> (     0) ->  [No]  
+*        : flag_snap_vx_save  -> (     0) ->  [No]  
+*        : flag_snap_vz_save  -> (     0) ->  [No]  
+*        : flag_snap_p_save   -> (     0) ->  [No]  
+*        : flag_snap_sdt      -> (  5000)
+
+* 7 flag Of forward function :
+*        : flag_of_function   -> (     1) ->  [ELASTIC] 
+
+* 8 Parameter Of Parallel Computing :
+*        : N_MPI              -> (     1)
+*        : N_OMP              -> (    18)
+
+======================================================================
+//-----------------------------------------------------//
+Setting Up The Obssystem Begin
+Setting Up The Obssystem Finish
+//-----------------------------------------------------//
+//-----------------------------------------------------//
+Setting Up The Model Begin
+The S is 0.636396
+GOOD!! THE PARAMETER SATISFY THE STABILITY CONDITION!
+Setting Up The Model Finish
+//-----------------------------------------------------//
+
+//-----------------------------------------------------//
+Setting PML Begin
+Setting PML FInish
+//-----------------------------------------------------//
+
+//-----------------------------------------------------//
+Setting Wavelet Begin
+Setting Wavelet Finish
+//-----------------------------------------------------//
+
+//-----------------------------------------------------//
+Core:Velcoity & Stress Calculklate Begin
+
+    No.1 - No.1 /All:1  Shot ,	    Sx : 	 [  0.00m,  0.00m] 
+    [                         ][4%]    [#                        ][8%]    [##                       ][12%][mpiexec@DESKTOP-SJFULLE] Sending Ctrl-C to processes as requested
+[mpiexec@DESKTOP-SJFULLE] Press Ctrl-C again to force abort
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 0 PID 3391 RUNNING AT DESKTOP-SJFULLE
+=   KILLED BY SIGNAL: 2 (Interrupt)
+===================================================================================

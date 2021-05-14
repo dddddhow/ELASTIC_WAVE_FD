@@ -125,9 +125,9 @@ double forward_func(struct PARAMETER *param)
     //-----------------------------------------//
     //          炮循环                         //
     //-----------------------------------------//
-    int argc;
-    char **argv;
-    MPI_Init(&argc, &argv);
+    //int argc;
+    //char **argv;
+    //MPI_Init(&argc, &argv);
     int proc_id;
     int proc_num;
 
@@ -380,7 +380,7 @@ double forward_func(struct PARAMETER *param)
         }
 
     }
-    MPI_Finalize();
+    //MPI_Finalize();
 
 
     printf("Core:Velcoity & Stress Calculklate Finsh\n");

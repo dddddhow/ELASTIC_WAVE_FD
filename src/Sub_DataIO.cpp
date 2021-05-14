@@ -1,7 +1,4 @@
 #include"../lib/IO_func.h"
-#include <armadillo>
-
-using namespace arma;
 
 double profile_IO_func(struct PARAMETER *param, float **record)
 {

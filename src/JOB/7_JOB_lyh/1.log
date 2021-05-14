@@ -1,0 +1,374 @@
+======================================================================
+PrintPar : 
+
+* 1  Path of model       : /home/ss/WINDOWS/ELASTIC_WAVE_FD/model/7_lyh/Mini_WPIVelocityModel_nz201_nx201.dat 
+* 2  Path of ObsSystem   : /home/ss/WINDOWS/ELASTIC_WAVE_FD/model/7_lyh/ 
+* 3  Path of Data Out    : /home/ss/WINDOWS/ELASTIC_WAVE_FD/file/7_lyh/ 
+
+
+* 4 Parameter Of Model   :
+*                        : (nx,nz,nt) -> (   201,   201,   700)
+*                        : (dx,dz,dt) -> (  5.00m,  5.00m,0.00040s)
+
+
+              nx=   201  dx=  5.00m
+ -------------------------------------------------- 
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                     Model Show                   | nz=   201
+|                                                  | dz=  5.00m
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+ -------------------------------------------------- 
+
+
+* 5 Parameter Of ObservationSystem :
+*        : (ns,nr)                ->  (    10,   201)
+*        : FreeSurface_flag       ->  (     0)
+           The (Upper)Surface is Absorbing boundary.
+
+
+* 6 Parameter Of Data Save :
+*        : flag_record_save   -> (     1) ->  [Yes] 
+*        : flag_model_save    -> (     1) ->  [Yes] 
+*        : flag_wavelet_save  -> (     0) ->  [No]  
+*        : flag_snap_vx_save  -> (     1) ->  [Yes] 
+*        : flag_snap_vz_save  -> (     1) ->  [Yes] 
+*        : flag_snap_p_save   -> (     1) ->  [Yes] 
+*        : flag_snap_sdt      -> (   100)
+
+* 7 flag Of forward function :
+*        : flag_of_function   -> (     1) ->  [ELASTIC] 
+
+* 8 Parameter Of Parallel Computing :
+*        : N_MPI              -> (     1)
+*        : N_OMP              -> (    16)
+
+======================================================================
+//-----------------------------------------------------//
+Setting Up The Obssystem Begin
+Setting Up The Obssystem Finish
+//-----------------------------------------------------//
+//-----------------------------------------------------//
+Setting Up The Model Begin
+The S is 0.452548
+GOOD!! THE PARAMETER SATISFY THE STABILITY CONDITION!
+Setting Up The Model Finish
+//-----------------------------------------------------//
+
+//-----------------------------------------------------//
+Setting PML Begin
+Setting PML FInish
+//-----------------------------------------------------//
+
+//-----------------------------------------------------//
+Setting Wavelet Begin
+Setting Wavelet Finish
+//-----------------------------------------------------//
+
+//-----------------------------------------------------//
+Core:Velcoity & Stress Calculklate Begin
+
+======================================================================
+PrintPar : 
+
+* 1  Path of model       : /home/ss/WINDOWS/ELASTIC_WAVE_FD/model/7_lyh/Mini_WPIVelocityModel_nz201_nx201.dat 
+* 2  Path of ObsSystem   : /home/ss/WINDOWS/ELASTIC_WAVE_FD/model/7_lyh/ 
+* 3  Path of Data Out    : /home/ss/WINDOWS/ELASTIC_WAVE_FD/file/7_lyh/ 
+
+
+* 4 Parameter Of Model   :
+*                        : (nx,nz,nt) -> (   201,   201,   700)
+*                        : (dx,dz,dt) -> (  5.00m,  5.00m,0.00040s)
+
+
+              nx=   201  dx=  5.00m
+ -------------------------------------------------- 
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                     Model Show                   | nz=   201
+|                                                  | dz=  5.00m
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+ -------------------------------------------------- 
+
+
+* 5 Parameter Of ObservationSystem :
+*        : (ns,nr)                ->  (    10,   201)
+*        : FreeSurface_flag       ->  (     0)
+           The (Upper)Surface is Absorbing boundary.
+
+
+* 6 Parameter Of Data Save :
+*        : flag_record_save   -> (     1) ->  [Yes] 
+*        : flag_model_save    -> (     1) ->  [Yes] 
+*        : flag_wavelet_save  -> (     0) ->  [No]  
+*        : flag_snap_vx_save  -> (     1) ->  [Yes] 
+*        : flag_snap_vz_save  -> (     1) ->  [Yes] 
+*        : flag_snap_p_save   -> (     1) ->  [Yes] 
+*        : flag_snap_sdt      -> (   100)
+
+* 7 flag Of forward function :
+*        : flag_of_function   -> (     1) ->  [ELASTIC] 
+
+* 8 Parameter Of Parallel Computing :
+*        : N_MPI              -> (     1)
+*        : N_OMP              -> (    16)
+
+======================================================================
+//-----------------------------------------------------//
+Setting Up The Obssystem Begin
+Setting Up The Obssystem Finish
+//-----------------------------------------------------//
+//-----------------------------------------------------//
+Setting Up The Model Begin
+The S is 0.452548
+GOOD!! THE PARAMETER SATISFY THE STABILITY CONDITION!
+Setting Up The Model Finish
+//-----------------------------------------------------//
+
+//-----------------------------------------------------//
+Setting PML Begin
+Setting PML FInish
+//-----------------------------------------------------//
+
+//-----------------------------------------------------//
+Setting Wavelet Begin
+Setting Wavelet Finish
+//-----------------------------------------------------//
+
+//-----------------------------------------------------//
+Core:Velcoity & Stress Calculklate Begin
+
+======================================================================
+PrintPar : 
+
+* 1  Path of model       : /home/ss/WINDOWS/ELASTIC_WAVE_FD/model/7_lyh/Mini_WPIVelocityModel_nz201_nx201.dat 
+* 2  Path of ObsSystem   : /home/ss/WINDOWS/ELASTIC_WAVE_FD/model/7_lyh/ 
+* 3  Path of Data Out    : /home/ss/WINDOWS/ELASTIC_WAVE_FD/file/7_lyh/ 
+
+
+* 4 Parameter Of Model   :
+*                        : (nx,nz,nt) -> (   201,   201,   700)
+*                        : (dx,dz,dt) -> (  5.00m,  5.00m,0.00040s)
+
+
+              nx=   201  dx=  5.00m
+ -------------------------------------------------- 
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                     Model Show                   | nz=   201
+|                                                  | dz=  5.00m
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+ -------------------------------------------------- 
+
+
+* 5 Parameter Of ObservationSystem :
+*        : (ns,nr)                ->  (    10,   201)
+*        : FreeSurface_flag       ->  (     0)
+           The (Upper)Surface is Absorbing boundary.
+
+
+* 6 Parameter Of Data Save :
+*        : flag_record_save   -> (     1) ->  [Yes] 
+*        : flag_model_save    -> (     1) ->  [Yes] 
+*        : flag_wavelet_save  -> (     0) ->  [No]  
+*        : flag_snap_vx_save  -> (     1) ->  [Yes] 
+*        : flag_snap_vz_save  -> (     1) ->  [Yes] 
+*        : flag_snap_p_save   -> (     1) ->  [Yes] 
+*        : flag_snap_sdt      -> (   100)
+
+* 7 flag Of forward function :
+*        : flag_of_function   -> (     1) ->  [ELASTIC] 
+
+* 8 Parameter Of Parallel Computing :
+*        : N_MPI              -> (     1)
+*        : N_OMP              -> (    16)
+
+======================================================================
+//-----------------------------------------------------//
+Setting Up The Obssystem Begin
+Setting Up The Obssystem Finish
+//-----------------------------------------------------//
+//-----------------------------------------------------//
+Setting Up The Model Begin
+The S is 0.452548
+GOOD!! THE PARAMETER SATISFY THE STABILITY CONDITION!
+Setting Up The Model Finish
+//-----------------------------------------------------//
+
+//-----------------------------------------------------//
+Setting PML Begin
+Setting PML FInish
+//-----------------------------------------------------//
+
+//-----------------------------------------------------//
+Setting Wavelet Begin
+Setting Wavelet Finish
+//-----------------------------------------------------//
+
+//-----------------------------------------------------//
+Core:Velcoity & Stress Calculklate Begin
+
+======================================================================
+PrintPar : 
+
+* 1  Path of model       : /home/ss/WINDOWS/ELASTIC_WAVE_FD/model/7_lyh/Mini_WPIVelocityModel_nz201_nx201.dat 
+* 2  Path of ObsSystem   : /home/ss/WINDOWS/ELASTIC_WAVE_FD/model/7_lyh/ 
+* 3  Path of Data Out    : /home/ss/WINDOWS/ELASTIC_WAVE_FD/file/7_lyh/ 
+
+
+* 4 Parameter Of Model   :
+*                        : (nx,nz,nt) -> (   201,   201,   700)
+*                        : (dx,dz,dt) -> (  5.00m,  5.00m,0.00040s)
+
+
+              nx=   201  dx=  5.00m
+ -------------------------------------------------- 
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                     Model Show                   | nz=   201
+|                                                  | dz=  5.00m
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+ -------------------------------------------------- 
+
+
+* 5 Parameter Of ObservationSystem :
+*        : (ns,nr)                ->  (    10,   201)
+*        : FreeSurface_flag       ->  (     0)
+           The (Upper)Surface is Absorbing boundary.
+
+
+* 6 Parameter Of Data Save :
+*        : flag_record_save   -> (     1) ->  [Yes] 
+*        : flag_model_save    -> (     1) ->  [Yes] 
+*        : flag_wavelet_save  -> (     0) ->  [No]  
+*        : flag_snap_vx_save  -> (     1) ->  [Yes] 
+*        : flag_snap_vz_save  -> (     1) ->  [Yes] 
+*        : flag_snap_p_save   -> (     1) ->  [Yes] 
+*        : flag_snap_sdt      -> (   100)
+
+* 7 flag Of forward function :
+*        : flag_of_function   -> (     1) ->  [ELASTIC] 
+
+* 8 Parameter Of Parallel Computing :
+*        : N_MPI              -> (     1)
+*        : N_OMP              -> (    16)
+
+======================================================================
+//-----------------------------------------------------//
+Setting Up The Obssystem Begin
+Setting Up The Obssystem Finish
+//-----------------------------------------------------//
+//-----------------------------------------------------//
+Setting Up The Model Begin
+The S is 0.452548
+GOOD!! THE PARAMETER SATISFY THE STABILITY CONDITION!
+Setting Up The Model Finish
+//-----------------------------------------------------//
+
+//-----------------------------------------------------//
+Setting PML Begin
+Setting PML FInish
+//-----------------------------------------------------//
+
+//-----------------------------------------------------//
+Setting Wavelet Begin
+Setting Wavelet Finish
+//-----------------------------------------------------//
+
+//-----------------------------------------------------//
+Core:Velcoity & Stress Calculklate Begin
+
+    No.1 - No.4 /All:10  Shot ,	    Sx : 	 [500.00m,500.00m]  [505.00m,500.00m]  [510.00m,500.00m]  [515.00m,500.00m] 
+    [                         ][4%]    [#                        ][8%]    [##                       ][12%]    [###                      ][16%]    [####                     ][20%]    [#####                    ][24%]    [######                   ][28%]    [#######                  ][32%]    [########                 ][36%]    [#########                ][40%]    [##########               ][44%]    [###########              ][48%]    [############             ][52%]    [#############            ][56%]    [##############           ][60%]    [###############          ][64%]    [################         ][68%]    [#################        ][72%]    [##################       ][76%]    [###################      ][80%]    [####################     ][84%]    [#####################    ][88%]    [######################   ][92%]    [#######################  ][96%]    [######################## ][100%]                  This part Shot cost 5.589878 s
+    No.5 - No.8 /All:10  Shot ,	    Sx : 	 [520.00m,500.00m]  [525.00m,500.00m]  [530.00m,500.00m]  [535.00m,500.00m] 
+    [#########################][4%]    [#                        ][8%]    [##                       ][12%]    [###                      ][16%]    [####                     ][20%]    [#####                    ][24%]    [######                   ][28%]    [#######                  ][32%]    [########                 ][36%]    [#########                ][40%]    [##########               ][44%]    [###########              ][48%]    [############             ][52%]    [#############            ][56%]    [##############           ][60%]    [###############          ][64%]    [################         ][68%]    [#################        ][72%]    [##################       ][76%]    [###################      ][80%]    [####################     ][84%]    [#####################    ][88%]    [######################   ][92%]    [#######################  ][96%]    [######################## ][100%]                  This part Shot cost 4.856064 s
+    No.9 - No.10 /All:10  Shot ,	    Sx : 	 [540.00m,500.00m]  [545.00m,500.00m] 
+    [#########################][4%]    [#                        ][8%]    [##                       ][12%]    [###                      ][16%]    [####                     ][20%]    [#####                    ][24%]    [######                   ][28%]    [#######                  ][32%]    [########                 ][36%]    [#########                ][40%]    [##########               ][44%]    [###########              ][48%]    [############             ][52%]    [#############            ][56%]    [##############           ][60%]    [###############          ][64%]    [################         ][68%]    [#################        ][72%]    [##################       ][76%]    [###################      ][80%]    [####################     ][84%]    [#####################    ][88%]    [######################   ][92%]    [#######################  ][96%]    [######################## ][100%]                  This part Shot cost 4.625370 s
+Core:Velcoity & Stress Calculklate Finsh
+//-----------------------------------------------------//
+
+Finish
+//-----------------------------------------------------//
+
+Core:Velcoity & Stress Calculklate Finsh
+//-----------------------------------------------------//
+
+Finish
+//-----------------------------------------------------//
+
+Core:Velcoity & Stress Calculklate Finsh
+//-----------------------------------------------------//
+
+Finish
+//-----------------------------------------------------//
+
+It took 15.426843 seconds
+It took 15.426842 seconds
+It took 15.426683 seconds
+Core:Velcoity & Stress Calculklate Finsh
+//-----------------------------------------------------//
+
+Finish
+//-----------------------------------------------------//
+
+It took 15.444984 seconds

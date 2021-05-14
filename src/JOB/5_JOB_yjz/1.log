@@ -1,13 +1,13 @@
 ======================================================================
 PrintPar : 
 
-* 1  Path of model       : /home/ss/WINDOWS/ELASTIC_WAVE_FD/model/model_mini_amoco/MiniAmoco_nz600_nx400.dat 
-* 2  Path of ObsSystem   : /home/ss/WINDOWS/ELASTIC_WAVE_FD/model/model_mini_amoco/ 
-* 3  Path of Data Out    : /home/ss/WINDOWS/ELASTIC_WAVE_FD/file/2_MiniAmoco/ 
+* 1  Path of model       : /home/ss/WINDOWS/ELASTIC_WAVE_FD/model/model_yjz/Mini_Layer_VelocityModel_nz600_nx400_background.dat 
+* 2  Path of ObsSystem   : /home/ss/WINDOWS/ELASTIC_WAVE_FD/model/model_yjz/ 
+* 3  Path of Data Out    : /home/ss/WINDOWS/ELASTIC_WAVE_FD/file/5_yzj/ 
 
 
 * 4 Parameter Of Model   :
-*                        : (nx,nz,nt) -> (   400,   600,  8000)
+*                        : (nx,nz,nt) -> (   400,   600,  7500)
 *                        : (dx,dz,dt) -> (  5.00m,  5.00m,0.00040s)
 
 
@@ -47,7 +47,7 @@ PrintPar :
 
 
 * 5 Parameter Of ObservationSystem :
-*        : (ns,nr)                ->  (     5,   400)
+*        : (ns,nr)                ->  (     1,  1996)
 *        : FreeSurface_flag       ->  (     0)
            The (Upper)Surface is Absorbing boundary.
 
@@ -56,17 +56,17 @@ PrintPar :
 *        : flag_record_save   -> (     1) ->  [Yes] 
 *        : flag_model_save    -> (     1) ->  [Yes] 
 *        : flag_wavelet_save  -> (     0) ->  [No]  
-*        : flag_snap_vx_save  -> (     1) ->  [Yes] 
+*        : flag_snap_vx_save  -> (     0) ->  [No]  
 *        : flag_snap_vz_save  -> (     1) ->  [Yes] 
-*        : flag_snap_p_save   -> (     1) ->  [Yes] 
-*        : flag_snap_sdt      -> (   200)
+*        : flag_snap_p_save   -> (     0) ->  [No]  
+*        : flag_snap_sdt      -> (   100)
 
 * 7 flag Of forward function :
 *        : flag_of_function   -> (     1) ->  [ELASTIC] 
 
 * 8 Parameter Of Parallel Computing :
 *        : N_MPI              -> (     1)
-*        : N_OMP              -> (    10)
+*        : N_OMP              -> (    18)
 
 ======================================================================
 //-----------------------------------------------------//
@@ -75,7 +75,7 @@ Setting Up The Obssystem Finish
 //-----------------------------------------------------//
 //-----------------------------------------------------//
 Setting Up The Model Begin
-The S is 0.618067
+The S is 0.226274
 GOOD!! THE PARAMETER SATISFY THE STABILITY CONDITION!
 Setting Up The Model Finish
 //-----------------------------------------------------//
@@ -96,13 +96,13 @@ Core:Velcoity & Stress Calculklate Begin
 ======================================================================
 PrintPar : 
 
-* 1  Path of model       : /home/ss/WINDOWS/ELASTIC_WAVE_FD/model/model_mini_amoco/MiniAmoco_nz600_nx400.dat 
-* 2  Path of ObsSystem   : /home/ss/WINDOWS/ELASTIC_WAVE_FD/model/model_mini_amoco/ 
-* 3  Path of Data Out    : /home/ss/WINDOWS/ELASTIC_WAVE_FD/file/2_MiniAmoco/ 
+* 1  Path of model       : /home/ss/WINDOWS/ELASTIC_WAVE_FD/model/model_yjz/Mini_Layer_VelocityModel_nz600_nx400_background.dat 
+* 2  Path of ObsSystem   : /home/ss/WINDOWS/ELASTIC_WAVE_FD/model/model_yjz/ 
+* 3  Path of Data Out    : /home/ss/WINDOWS/ELASTIC_WAVE_FD/file/5_yzj/ 
 
 
 * 4 Parameter Of Model   :
-*                        : (nx,nz,nt) -> (   400,   600,  8000)
+*                        : (nx,nz,nt) -> (   400,   600,  7500)
 *                        : (dx,dz,dt) -> (  5.00m,  5.00m,0.00040s)
 
 
@@ -142,7 +142,7 @@ PrintPar :
 
 
 * 5 Parameter Of ObservationSystem :
-*        : (ns,nr)                ->  (     5,   400)
+*        : (ns,nr)                ->  (     1,  1996)
 *        : FreeSurface_flag       ->  (     0)
            The (Upper)Surface is Absorbing boundary.
 
@@ -151,17 +151,17 @@ PrintPar :
 *        : flag_record_save   -> (     1) ->  [Yes] 
 *        : flag_model_save    -> (     1) ->  [Yes] 
 *        : flag_wavelet_save  -> (     0) ->  [No]  
-*        : flag_snap_vx_save  -> (     1) ->  [Yes] 
+*        : flag_snap_vx_save  -> (     0) ->  [No]  
 *        : flag_snap_vz_save  -> (     1) ->  [Yes] 
-*        : flag_snap_p_save   -> (     1) ->  [Yes] 
-*        : flag_snap_sdt      -> (   200)
+*        : flag_snap_p_save   -> (     0) ->  [No]  
+*        : flag_snap_sdt      -> (   100)
 
 * 7 flag Of forward function :
 *        : flag_of_function   -> (     1) ->  [ELASTIC] 
 
 * 8 Parameter Of Parallel Computing :
 *        : N_MPI              -> (     1)
-*        : N_OMP              -> (    10)
+*        : N_OMP              -> (    18)
 
 ======================================================================
 //-----------------------------------------------------//
@@ -170,7 +170,7 @@ Setting Up The Obssystem Finish
 //-----------------------------------------------------//
 //-----------------------------------------------------//
 Setting Up The Model Begin
-The S is 0.618067
+The S is 0.226274
 GOOD!! THE PARAMETER SATISFY THE STABILITY CONDITION!
 Setting Up The Model Finish
 //-----------------------------------------------------//
@@ -188,23 +188,119 @@ Setting Wavelet Finish
 //-----------------------------------------------------//
 Core:Velcoity & Stress Calculklate Begin
 
-    No.1 - No.2 /All:5  Shot ,	    Sx : 	 [  0.00m,  0.00m]  [105.00m,  0.00m] 
-    [                         ][4%]    [#                        ][8%]    [##                       ][12%]    [###                      ][16%]    [####                     ][20%]    [#####                    ][24%]    [######                   ][28%]    [#######                  ][32%]    [########                 ][36%]    [#########                ][40%]    [##########               ][44%]    [###########              ][48%]    [############             ][52%]    [#############            ][56%]    [##############           ][60%]    [###############          ][64%]    [################         ][68%]    [#################        ][72%]    [##################       ][76%]    [###################      ][80%]    [####################     ][84%]    [#####################    ][88%]    [######################   ][92%]    [#######################  ][96%]    [######################## ][100%]                  This part Shot cost 355.308438 s
-    No.3 - No.4 /All:5  Shot ,	    Sx : 	 [210.00m,  0.00m]  [315.00m,  0.00m] 
-    [#########################][4%]    [#                        ][8%]    [##                       ][12%]    [###                      ][16%]    [####                     ][20%]    [#####                    ][24%]    [######                   ][28%]    [#######                  ][32%]    [########                 ][36%]    [#########                ][40%]    [##########               ][44%]    [###########              ][48%]    [############             ][52%]    [#############            ][56%]    [##############           ][60%]    [###############          ][64%]    [################         ][68%]    [#################        ][72%]    [##################       ][76%]    [###################      ][80%]    [####################     ][84%]    [#####################    ][88%]    [######################   ][92%]    [#######################  ][96%]    [######################## ][100%]                  This part Shot cost 361.109254 s
-    No.5 - No.5 /All:5  Shot ,	    Sx : 	 [420.00m,  0.00m] 
-    [#########################][4%]    [#                        ][8%]    [##                       ][12%]    [###                      ][16%]    [####                     ][20%]    [#####                    ][24%]    [######                   ][28%]    [#######                  ][32%]    [########                 ][36%]    [#########                ][40%]    [##########               ][44%]    [###########              ][48%]    [############             ][52%]    [#############            ][56%]    [##############           ][60%]    [###############          ][64%]    [################         ][68%]    [#################        ][72%]    [##################       ][76%]    [###################      ][80%]    [####################     ][84%]    [#####################    ][88%]    [######################   ][92%]    [#######################  ][96%]    [######################## ][100%]                  This part Shot cost 243.393355 s
-Core:Velcoity & Stress Calculklate Finsh
+======================================================================
+PrintPar : 
+
+* 1  Path of model       : /home/ss/WINDOWS/ELASTIC_WAVE_FD/model/model_yjz/Mini_Layer_VelocityModel_nz600_nx400_background.dat 
+* 2  Path of ObsSystem   : /home/ss/WINDOWS/ELASTIC_WAVE_FD/model/model_yjz/ 
+* 3  Path of Data Out    : /home/ss/WINDOWS/ELASTIC_WAVE_FD/file/5_yzj/ 
+
+
+* 4 Parameter Of Model   :
+*                        : (nx,nz,nt) -> (   400,   600,  7500)
+*                        : (dx,dz,dt) -> (  5.00m,  5.00m,0.00040s)
+
+
+              nx=   400  dx=  5.00m
+ -------------------------------------------------- 
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                     Model Show                   | nz=   600
+|                                                  | dz=  5.00m
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+ -------------------------------------------------- 
+
+
+* 5 Parameter Of ObservationSystem :
+*        : (ns,nr)                ->  (     1,  1996)
+*        : FreeSurface_flag       ->  (     0)
+           The (Upper)Surface is Absorbing boundary.
+
+
+* 6 Parameter Of Data Save :
+*        : flag_record_save   -> (     1) ->  [Yes] 
+*        : flag_model_save    -> (     1) ->  [Yes] 
+*        : flag_wavelet_save  -> (     0) ->  [No]  
+*        : flag_snap_vx_save  -> (     0) ->  [No]  
+*        : flag_snap_vz_save  -> (     1) ->  [Yes] 
+*        : flag_snap_p_save   -> (     0) ->  [No]  
+*        : flag_snap_sdt      -> (   100)
+
+* 7 flag Of forward function :
+*        : flag_of_function   -> (     1) ->  [ELASTIC] 
+
+* 8 Parameter Of Parallel Computing :
+*        : N_MPI              -> (     1)
+*        : N_OMP              -> (    18)
+
+======================================================================
+//-----------------------------------------------------//
+Setting Up The Obssystem Begin
+Setting Up The Obssystem Finish
+//-----------------------------------------------------//
+//-----------------------------------------------------//
+Setting Up The Model Begin
+The S is 0.226274
+GOOD!! THE PARAMETER SATISFY THE STABILITY CONDITION!
+Setting Up The Model Finish
 //-----------------------------------------------------//
 
-Finish
+//-----------------------------------------------------//
+Setting PML Begin
+Setting PML FInish
 //-----------------------------------------------------//
 
-Core:Velcoity & Stress Calculklate Finsh
+//-----------------------------------------------------//
+Setting Wavelet Begin
+Setting Wavelet Finish
 //-----------------------------------------------------//
 
-Finish
 //-----------------------------------------------------//
+Core:Velcoity & Stress Calculklate Begin
 
-It took 959.859519 seconds
-It took 959.859836 seconds
+    No.1 - No.1 /All:1  Shot ,	    Sx : 	 [1000.00m,  0.00m] 
+    [                         ][4%][mpiexec@DESKTOP-SJFULLE] Sending Ctrl-C to processes as requested
+[mpiexec@DESKTOP-SJFULLE] Press Ctrl-C again to force abort
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 0 PID 18632 RUNNING AT DESKTOP-SJFULLE
+=   KILLED BY SIGNAL: 2 (Interrupt)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 1 PID 18633 RUNNING AT DESKTOP-SJFULLE
+=   KILLED BY SIGNAL: 2 (Interrupt)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 2 PID 18634 RUNNING AT DESKTOP-SJFULLE
+=   KILLED BY SIGNAL: 2 (Interrupt)
+===================================================================================

@@ -4,7 +4,7 @@
 *                                                                              *
 ********************************************************************************
 **** 1: Path of Model **********************************************************
-/home/ss/WINDOWS/ELASTIC_WAVE_FD/model/model_mini_amoco/MiniAmoco_nz600_nx400.dat
+/home/ss/WINDOWS/ELASTIC_WAVE_FD/model/model_WPI/Mini_WPIVelocityModel_nz790_nx1076.dat
 **** 2: MainPath of data ObservationSystem *************************************
 /home/ss/WINDOWS/ELASTIC_WAVE_FD/model/model_mini_amoco/
 **** 3: MainPath of data Output ************************************************

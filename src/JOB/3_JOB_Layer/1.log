@@ -1,0 +1,76 @@
+======================================================================
+PrintPar : 
+
+* 1  Path of model       : /home/ss/WINDOWS/ELASTIC_WAVE_FD/model/model_layer/Mini_Layer_VelocityModel_nz600_nx10000.dat 
+* 2  Path of ObsSystem   : /home/ss/WINDOWS/ELASTIC_WAVE_FD/model/model_layer/ 
+* 3  Path of Data Out    : /home/ss/WINDOWS/ELASTIC_WAVE_FD/file/3_Layer/ 
+
+
+* 4 Parameter Of Model   :
+*                        : (nx,nz,nt) -> ( 10000,   600, 15000)
+*                        : (dx,dz,dt) -> (  5.00m,  5.00m,0.00040s)
+
+
+              nx= 10000  dx=  5.00m
+ -------------------------------------------------- 
+|                     Model Show                   | nz=   600
+|                                                  | dz=  5.00m
+ -------------------------------------------------- 
+
+
+* 5 Parameter Of ObservationSystem :
+*        : (ns,nr)                ->  (     1, 10000)
+*        : FreeSurface_flag       ->  (     0)
+           The (Upper)Surface is Absorbing boundary.
+
+
+* 6 Parameter Of Data Save :
+*        : flag_record_save   -> (     1) ->  [Yes] 
+*        : flag_model_save    -> (     1) ->  [Yes] 
+*        : flag_wavelet_save  -> (     0) ->  [No]  
+*        : flag_snap_vx_save  -> (     0) ->  [No]  
+*        : flag_snap_vz_save  -> (     1) ->  [Yes] 
+*        : flag_snap_p_save   -> (     0) ->  [No]  
+*        : flag_snap_sdt      -> (   100)
+
+* 7 flag Of forward function :
+*        : flag_of_function   -> (     1) ->  [ELASTIC] 
+
+* 8 Parameter Of Parallel Computing :
+*        : N_MPI              -> (     1)
+*        : N_OMP              -> (    18)
+
+======================================================================
+//-----------------------------------------------------//
+Setting Up The Obssystem Begin
+Setting Up The Obssystem Finish
+//-----------------------------------------------------//
+//-----------------------------------------------------//
+Setting Up The Model Begin
+The S is 0.509117
+GOOD!! THE PARAMETER SATISFY THE STABILITY CONDITION!
+Setting Up The Model Finish
+//-----------------------------------------------------//
+
+//-----------------------------------------------------//
+Setting PML Begin
+Setting PML FInish
+//-----------------------------------------------------//
+
+//-----------------------------------------------------//
+Setting Wavelet Begin
+Setting Wavelet Finish
+//-----------------------------------------------------//
+
+//-----------------------------------------------------//
+Core:Velcoity & Stress Calculklate Begin
+
+    No.1 - No.1 /All:1  Shot ,	    Sx : 	 [25000.00m,  0.00m] 
+    [                         ][4%]    [#                        ][8%]    [##                       ][12%]    [###                      ][16%]    [####                     ][20%]    [#####                    ][24%]    [######                   ][28%]    [#######                  ][32%]    [########                 ][36%]    [#########                ][40%]    [##########               ][44%]    [###########              ][48%]    [############             ][52%]    [#############            ][56%]    [##############           ][60%]    [###############          ][64%]    [################         ][68%]    [#################        ][72%]    [##################       ][76%]    [###################      ][80%]    [####################     ][84%]    [#####################    ][88%]    [######################   ][92%]    [#######################  ][96%]    [######################## ][100%]                  This part Shot cost 3492.668120 s
+Core:Velcoity & Stress Calculklate Finsh
+//-----------------------------------------------------//
+
+Finish
+//-----------------------------------------------------//
+
+It took 3493.207079 seconds
